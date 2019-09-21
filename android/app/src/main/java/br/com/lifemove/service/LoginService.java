@@ -1,6 +1,6 @@
 package br.com.lifemove.service;
 
-import br.com.lifemove.SimpleAsynchronousTaskListener;
+import br.com.lifemove.listener.SimpleAsynchronousTaskListener;
 
 public class LoginService {
 

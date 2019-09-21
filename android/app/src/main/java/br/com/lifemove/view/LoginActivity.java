@@ -5,13 +5,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import br.com.lifemove.R;
-import br.com.lifemove.SimpleAsynchronousTaskListener;
+import br.com.lifemove.listener.SimpleAsynchronousTaskListener;
 import br.com.lifemove.service.LoginService;
 
 public class LoginActivity extends AppCompatActivity {
@@ -27,6 +28,9 @@ public class LoginActivity extends AppCompatActivity {
 
         if (getSupportActionBar() != null) getSupportActionBar().hide();
 
+        ImageView logoHolder = findViewById(R.id.logo_holder);
+        logoHolder.setImageResource(R.drawable.lifemove_logo_vector);
+
         username_field = findViewById(R.id.username_field);
         password_field = findViewById(R.id.password_field);
 
@@ -38,8 +42,12 @@ public class LoginActivity extends AppCompatActivity {
                 String username = username_field.getText().toString();
                 String password = password_field.getText().toString();
 
-                LoginService loginService = new LoginService(getSimpleAsynchronousTaskListener());
-                loginService.authenticate(username, password);
+                if(username.isEmpty() || password.isEmpty())
+                    Toast.makeText(LoginActivity.this, R.string.all_fields_must_be_filled, Toast.LENGTH_SHORT).show();
+                else {
+                    LoginService loginService = new LoginService(getSimpleAsynchronousTaskListener());
+                    loginService.authenticate(username, password);
+                }
             }
         });
     }
@@ -50,6 +58,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onSuccess() {
                 startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                finish();
             }
 
             @Override

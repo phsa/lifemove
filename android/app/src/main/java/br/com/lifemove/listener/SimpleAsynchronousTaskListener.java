@@ -1,4 +1,4 @@
-package br.com.lifemove;
+package br.com.lifemove.listener;
 
 public interface SimpleAsynchronousTaskListener {
 

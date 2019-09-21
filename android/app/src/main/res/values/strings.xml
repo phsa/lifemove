@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">LifeMove</string>
+
+    <!-- Strings related to Login -->
     <string name="prompt_sign_in">SIGN IN</string>
     <string name="prompt_username">Username</string>
     <string name="prompt_password">Password</string>
+    <string name="all_fields_must_be_filled">Preencha todos os campos.</string>
 </resources>
