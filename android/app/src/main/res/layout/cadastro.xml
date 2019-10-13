@@ -27,7 +27,7 @@
             android:layout_marginBottom="68dp"
             android:background="@drawable/rounded_button"
             android:fontFamily="sans-serif-black"
-            android:text="@string/prompt_sign_in"
+            android:text="sigin up"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -35,8 +35,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/password_field" />
-
+            app:layout_constraintTop_toBottomOf="@+id/password_field"
+            app:layout_constraintVertical_bias="1.0" />
 
         <EditText
             android:id="@+id/password_field"
@@ -48,31 +48,56 @@
             android:textColorHint="@color/dark_green"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.484"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/name_field"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.414" />
 
         <EditText
             android:id="@+id/name_field"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:hint="@string/prompt_username"
-            android:inputType="textShortMessage"
+            android:hint="Name"
             android:textColorHint="@color/dark_green"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/logo_holder" />
 
+        <EditText
+            android:id="@+id/username_field"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:hint="@string/prompt_username"
+            android:textColorHint="@color/dark_green"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.484"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/logo_holder" />
+
+
+        <EditText
+            android:id="@+id/email_field_field"
+            android:layout_width="245dp"
+            android:layout_height="43dp"
+            android:ems="10"
+            android:hint="Email"
+            android:inputType="textPersonName"
+            tools:layout_editor_absoluteX="78dp"
+            tools:layout_editor_absoluteY="352dp" />
+
         <ImageView
             android:id="@+id/logo_holder"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
+            android:layout_width="256dp"
+            android:layout_height="197dp"
             android:layout_marginTop="32dp"
             android:contentDescription="@string/app_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/lifemove_logo_vector" />
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
