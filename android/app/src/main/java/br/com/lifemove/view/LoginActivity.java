@@ -31,10 +31,10 @@ public class LoginActivity extends AppCompatActivity {
         ImageView logoHolder = findViewById(R.id.logo_holder);
         logoHolder.setImageResource(R.drawable.lifemove_logo_vector);
 
-        username_field = findViewById(R.id.username_field);
+        username_field = findViewById(R.id.name_field);
         password_field = findViewById(R.id.password_field);
 
-        Button sign_in = findViewById(R.id.sign_in_button);
+        Button sign_in = findViewById(R.id.sign_in);
 
         sign_in.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onSuccess() {
-                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                startActivity(new Intent(LoginActivity.this, CadastroActivity.class));
                 finish();
             }
 

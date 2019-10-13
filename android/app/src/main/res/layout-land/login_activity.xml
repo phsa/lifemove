@@ -23,7 +23,7 @@
 
 
     <EditText
-        android:id="@+id/username_field"
+        android:id="@+id/name_field"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
@@ -45,13 +45,13 @@
         app:layout_constraintBottom_toBottomOf="@+id/logo_holder"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/logo_holder"
-        app:layout_constraintTop_toBottomOf="@+id/username_field"
+        app:layout_constraintTop_toBottomOf="@+id/name_field"
         app:layout_constraintVertical_bias="0.0"
         app:layout_constraintWidth_percent="0.45" />
 
 
     <Button
-        android:id="@+id/sign_in_button"
+        android:id="@+id/sign_in"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_button"
