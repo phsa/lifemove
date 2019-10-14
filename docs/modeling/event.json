@@ -3,6 +3,10 @@
 	"title": "3ª Pedalada do SESC",
 	"description": "Evento promovido pelo SESC Crateús",
 	"date": 775444125599633258,
+	"location": {
+		"latitude": "12º13'25.00",
+		"longitude": "12º13'25.00"
+	},
 	"organizedBy": {
 		"id": "ED44RTF6677689221",
 		"name": "SESC Crateús",
