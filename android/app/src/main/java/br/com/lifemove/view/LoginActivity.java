@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import br.com.lifemove.R;
 import br.com.lifemove.listener.SimpleAsynchronousTaskListener;
 import br.com.lifemove.service.AuthenticationService;
+import br.com.lifemove.utils.SharedPreferencesUtils;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -26,7 +27,11 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
 
-        if (getSupportActionBar() != null) getSupportActionBar().hide();
+        String user = SharedPreferencesUtils.readOfSharedPreferences("user");
+        if (user != null && !user.isEmpty()) {
+            startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+            finish();
+        }
 
         ImageView logoHolder = findViewById(R.id.logo_holder);
         logoHolder.setImageResource(R.drawable.lifemove_logo_vector);

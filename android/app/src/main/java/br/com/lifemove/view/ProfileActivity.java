@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import br.com.lifemove.R;
 
-public class PerfilActivity extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

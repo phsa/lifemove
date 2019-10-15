@@ -29,7 +29,6 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        if (getSupportActionBar() != null) getSupportActionBar().hide();
 
         signUp = findViewById(R.id.sign_up);
         nameInput = findViewById(R.id.name_field);
@@ -40,11 +39,6 @@ public class RegisterActivity extends AppCompatActivity {
 
         ImageView logo = findViewById(R.id.logo_holder);
         logo.setImageResource(R.drawable.lifemove_logo_vector);
-
-        // Write a message to the database
-//        FirebaseDatabase database = FirebaseDatabase.getInstance("https://lifemove-73e25.firebaseio.com/");
-//        final DatabaseReference myRef = database.getReference("users");
-//        myRef.setValue("Hello, World!");
 
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,11 +53,10 @@ public class RegisterActivity extends AppCompatActivity {
                 } else {
                     String passwordConfirmation = confirmPasswordInput.getText().toString();
                     if(password.compareTo(passwordConfirmation) != 0) {
-                        passwordInput.setBackgroundColor(getResources().getColor(R.color.red));
-                        confirmPasswordInput.setHighlightColor(getResources().getColor(R.color.red));
+                        passwordInput.setTextColor(getResources().getColor(R.color.red));
+                        confirmPasswordInput.setTextColor(getResources().getColor(R.color.red));
                         Toast.makeText(RegisterActivity.this, "Confirmação inválida.", Toast.LENGTH_SHORT).show();
                     } else {
-    //                    myRef.push().setValue(new User(nameInput.getText().toString(), username.getText().toString(), email.getText().toString(), password.getText().toString()));
                         signUp.setEnabled(false);
                         AuthenticationService registerService = new AuthenticationService(getSimpleAsynchronousTaskListener());
                         registerService.register(new User(name, username, email, password));
@@ -78,7 +71,7 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void onSuccess() {
-                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                startActivity(new Intent(RegisterActivity.this, HomeActivity.class));
                 Toast.makeText(RegisterActivity.this, "Cadastro efetuado com sucesso", Toast.LENGTH_LONG).show();
                 finish();
             }

@@ -18,4 +18,8 @@
     <string name="hint_confirm_password">Confirm password</string>
     <string name="prompt_create_account">CREATE ACCOUNT</string>
     <string name="prompt_already_user">Already a user?</string>
+    <string name="prompt_profile">Profile</string>
+    <string name="provide_email_hint">Type your email…</string>
+    <string name="prompt_reset">RESET</string>
+    <string name="reset_password_message"><c>Forgot your password?\nWe\'ll send a new one to you.</c></string>
 </resources>
