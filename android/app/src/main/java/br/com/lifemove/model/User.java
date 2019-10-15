@@ -1,7 +1,10 @@
 package br.com.lifemove.model;
 
 public class User {
-    String name, username, email, password;
+    private String name;
+    private String username;
+    private String email;
+    private String password;
 
     public User(String name, String username, String email, String password) {
         this.name = name;
@@ -50,5 +53,13 @@ public class User {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return (username != null) && username.compareTo(user.getUsername()) == 0;
     }
 }

@@ -4,7 +4,9 @@
     <!-- Basic colors -->
     <color name="black">#000000</color>
     <color name="dark_green">#628C6C</color>
+    <color name="green">#00FF00</color>
     <color name="white">#FFFFFF</color>
+    <color name="red">#FF0000</color>
 
     <!-- LifeMove palette -->
     <color name="darkest_primary">#594F4F</color>

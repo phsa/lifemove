@@ -27,7 +27,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
-        android:hint="@string/prompt_username"
+        android:hint="@string/hint_username"
         android:textColorHint="@color/dark_green"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/logo_holder"
@@ -35,11 +35,11 @@
         app:layout_constraintWidth_percent="0.45" />
 
     <EditText
-        android:id="@+id/password_field"
+        android:id="@+id/register_password_field"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:hint="@string/prompt_password"
+        android:hint="@string/hint_password"
         android:inputType="textPassword"
         android:textColorHint="@color/dark_green"
         app:layout_constraintBottom_toBottomOf="@+id/logo_holder"
@@ -51,10 +51,10 @@
 
 
     <Button
-        android:id="@+id/sign_in"
+        android:id="@+id/sign_up"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/rounded_button"
+        android:background="@drawable/soft_highlight_rounded_button"
         android:fontFamily="sans-serif-black"
         android:text="@string/prompt_sign_in"
         android:textColor="@color/black"
@@ -63,6 +63,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/logo_holder"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/logo_holder"
-        app:layout_constraintTop_toBottomOf="@+id/password_field"/>
+        app:layout_constraintTop_toBottomOf="@+id/register_password_field"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

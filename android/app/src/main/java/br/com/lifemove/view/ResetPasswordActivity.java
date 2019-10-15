@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import br.com.lifemove.R;
 
-public class HomeActivity extends AppCompatActivity {
+public class ResetPasswordActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_reset_password);
     }
 }

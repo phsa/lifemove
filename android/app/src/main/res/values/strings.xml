@@ -1,9 +1,21 @@
 <resources>
     <string name="app_name">LifeMove</string>
 
+    <!-- Common strings -->
+    <string name="all_fields_must_be_filled">Preencha todos os campos.</string>
+
     <!-- Strings related to Login -->
     <string name="prompt_sign_in">SIGN IN</string>
-    <string name="prompt_username">Username</string>
-    <string name="prompt_password">Password</string>
-    <string name="all_fields_must_be_filled">Preencha todos os campos.</string>
+    <string name="hint_username">Username</string>
+    <string name="hint_password">Password</string>
+    <string name="prompt_reset_password"><u>Reset password.</u></string>
+    <string name="prompt_first_time">First time here?</string>
+
+    <!-- Strings related to Sign up -->
+    <string name="prompt_sign_up">SIGN UP</string>
+    <string name="hint_name">Name</string>
+    <string name="hint_email">email</string>
+    <string name="hint_confirm_password">Confirm password</string>
+    <string name="prompt_create_account">CREATE ACCOUNT</string>
+    <string name="prompt_already_user">Already a user?</string>
 </resources>

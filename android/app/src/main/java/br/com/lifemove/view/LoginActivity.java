@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -13,17 +14,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import br.com.lifemove.R;
 import br.com.lifemove.listener.SimpleAsynchronousTaskListener;
-import br.com.lifemove.service.LoginService;
+import br.com.lifemove.service.AuthenticationService;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText username_field;
-    private EditText password_field;
+    private EditText usernameInput;
+    private EditText passwordInput;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.login_activity);
 
         if (getSupportActionBar() != null) getSupportActionBar().hide();
@@ -31,23 +31,40 @@ public class LoginActivity extends AppCompatActivity {
         ImageView logoHolder = findViewById(R.id.logo_holder);
         logoHolder.setImageResource(R.drawable.lifemove_logo_vector);
 
-        username_field = findViewById(R.id.name_field);
-        password_field = findViewById(R.id.password_field);
+        usernameInput = findViewById(R.id.login_username_field);
+        passwordInput = findViewById(R.id.login_password_field);
 
-        Button sign_in = findViewById(R.id.sign_in);
+        TextView forgotPasswordView = findViewById(R.id.forgot_password_view);
+        Button signIn = findViewById(R.id.sign_in);
+        Button signUp = findViewById(R.id.login_sign_up);
 
-        sign_in.setOnClickListener(new View.OnClickListener() {
+
+        forgotPasswordView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String username = username_field.getText().toString();
-                String password = password_field.getText().toString();
+                startActivity(new Intent(LoginActivity.this, ResetPasswordActivity.class));
+            }
+        });
+
+        signIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String username = usernameInput.getText().toString();
+                String password = passwordInput.getText().toString();
 
                 if(username.isEmpty() || password.isEmpty())
                     Toast.makeText(LoginActivity.this, R.string.all_fields_must_be_filled, Toast.LENGTH_SHORT).show();
                 else {
-                    LoginService loginService = new LoginService(getSimpleAsynchronousTaskListener());
+                    AuthenticationService loginService = new AuthenticationService(getSimpleAsynchronousTaskListener());
                     loginService.authenticate(username, password);
                 }
+            }
+        });
+
+        signUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
             }
         });
     }
@@ -57,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onSuccess() {
-                startActivity(new Intent(LoginActivity.this, CadastroActivity.class));
+                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                 finish();
             }
 
