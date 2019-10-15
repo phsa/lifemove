@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Basic colors -->
+    <color name="black">#000000</color>
+    <color name="dark_green">#628C6C</color>
+    <color name="green">#00FF00</color>
+    <color name="white">#FFFFFF</color>
+    <color name="red">#FF0000</color>
+
+    <!-- LifeMove palette -->
+    <color name="darkest_primary">#594F4F</color>
+    <color name="dark_primary">#547980</color>
+    <color name="primary">#45ADA8</color>
+    <color name="highlight">#9DE0AD</color>
+    <color name="soft_highlight">#E5FCC2</color>
+
+</resources>
