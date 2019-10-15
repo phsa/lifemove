@@ -9,10 +9,24 @@
     <color name="red">#FF0000</color>
 
     <!-- LifeMove palette -->
-    <color name="darkest_primary">#594F4F</color>
-    <color name="dark_primary">#547980</color>
-    <color name="primary">#45ADA8</color>
-    <color name="highlight">#9DE0AD</color>
-    <color name="soft_highlight">#E5FCC2</color>
+    <color name="darkest_primary">#12192B</color>
+    <color name="dark_primary">#020B36</color>
+    <color name="primary">#002853</color>
+    <color name="soft_primary">#003766</color>
+    <color name="light_primary">#00468C</color>
+    <color name="dark_highlight">#3977A5</color>
+    <color name="highlight">#71AECD</color>
+    <color name="soft_highlight">#B4E3F5</color>
+    <color name="light_highlight">#E3E3FF</color>
+
+
+
+
+
+
+
+
+
+
 
 </resources>
