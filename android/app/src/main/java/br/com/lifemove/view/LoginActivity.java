@@ -57,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onSuccess() {
-                startActivity(new Intent(LoginActivity.this, CadastroActivity.class));
+                startActivity(new Intent(LoginActivity.this, PerfilActivity.class));
                 finish();
             }
 
