@@ -33,8 +33,8 @@ public class LoginActivity extends AppCompatActivity {
             finish();
         }
 
-        ImageView logoHolder = findViewById(R.id.logo_holder);
-        logoHolder.setImageResource(R.drawable.lifemove_logo_vector);
+        ImageView logoHolder = findViewById(R.id.login_logo_holder);
+        logoHolder.setImageResource(R.drawable.light_logo);
 
         usernameInput = findViewById(R.id.login_username_field);
         passwordInput = findViewById(R.id.login_password_field);
@@ -69,7 +69,7 @@ public class LoginActivity extends AppCompatActivity {
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+                startActivity(new Intent(LoginActivity.this, RegistrationActivity.class));
             }
         });
     }

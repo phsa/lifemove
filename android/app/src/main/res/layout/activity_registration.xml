@@ -6,45 +6,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary"
+    android:background="@color/dark_primary"
     android:orientation="vertical"
-    tools:context=".view.RegisterActivity">
+    tools:context=".view.RegistrationActivity">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/login_components"
+        android:id="@+id/registration_components"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/background_gradient"
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/logo_holder"
+            android:id="@+id/registration_logo_holder"
             android:layout_width="128dp"
             android:layout_height="96dp"
             android:layout_marginTop="16dp"
             android:contentDescription="@string/app_name"
-            app:layout_constraintBottom_toTopOf="@+id/name_field"
+            app:layout_constraintBottom_toTopOf="@+id/registration_name_field"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintHorizontal_bias="0.15"
-            tools:src="@drawable/lifemove_logo_vector" />
+            tools:src="@drawable/light_logo" />
 
         <EditText
-            android:id="@+id/name_field"
+            android:id="@+id/registration_name_field"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:hint="@string/hint_name"
             android:textColorHint="@color/dark_green"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/logo_holder"
+            app:layout_constraintTop_toBottomOf="@+id/registration_logo_holder"
             app:layout_constraintHorizontal_bias="0.25"/>
 
 
         <EditText
-            android:id="@+id/register_username_field"
+            android:id="@+id/registration_username_field"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -52,11 +52,11 @@
             android:textColorHint="@color/dark_green"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/name_field"
+            app:layout_constraintTop_toBottomOf="@+id/registration_name_field"
             app:layout_constraintHorizontal_bias="0.25"/>
 
         <EditText
-            android:id="@+id/email_field"
+            android:id="@+id/registration_email_field"
             android:layout_width="245dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -65,11 +65,11 @@
             android:textColorHint="@color/dark_green"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/register_username_field"
+            app:layout_constraintTop_toBottomOf="@+id/registration_username_field"
             app:layout_constraintHorizontal_bias="0.25" />
 
         <EditText
-            android:id="@+id/register_password_field"
+            android:id="@+id/registration_password_field"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -78,12 +78,12 @@
             android:textColorHint="@color/dark_green"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/email_field"
+            app:layout_constraintTop_toBottomOf="@+id/registration_email_field"
             app:layout_constraintHorizontal_bias="0.25" />
 
 
         <EditText
-            android:id="@+id/confirm_password_field"
+            android:id="@+id/registration_confirm_password_field"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -92,7 +92,7 @@
             android:textColorHint="@color/dark_green"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/register_password_field"
+            app:layout_constraintTop_toBottomOf="@+id/registration_password_field"
             app:layout_constraintHorizontal_bias="0.25" />
 
 
@@ -103,13 +103,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="64dp"
             android:layout_marginBottom="48dp"
-            android:background="@drawable/soft_highlight_rounded_button"
+            android:background="@drawable/light_rounded_button"
             android:fontFamily="sans-serif-black"
             android:text="@string/prompt_create_account"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@+id/confirm_password_field"
+            app:layout_constraintTop_toBottomOf="@+id/registration_confirm_password_field"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

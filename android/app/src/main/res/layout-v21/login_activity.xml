@@ -79,7 +79,7 @@
 
         <Button
             android:id="@+id/sign_in"
-            android:layout_width="@dimen/button_width"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="72dp"
             android:layout_marginBottom="68dp"
@@ -88,6 +88,7 @@
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:backgroundTint="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/login_password_field" />
@@ -101,15 +102,16 @@
             android:textSize="14sp"
             android:textColor="@color/white"
             android:textStyle="bold"
+            android:backgroundTint="@color/white"
             app:layout_constraintBottom_toTopOf="@+id/login_sign_up"
             app:layout_constraintEnd_toEndOf="@+id/login_sign_up"
             app:layout_constraintStart_toStartOf="@+id/login_sign_up" />
 
         <Button
             android:id="@+id/login_sign_up"
-            android:layout_width="@dimen/button_width"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="64dp"
+            android:layout_marginTop="69dp"
             android:background="@drawable/primary_rounded_button"
             android:fontFamily="sans-serif-black"
             android:text="@string/prompt_sign_up"

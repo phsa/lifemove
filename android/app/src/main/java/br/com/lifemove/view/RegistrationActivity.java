@@ -4,8 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,7 +18,7 @@ import br.com.lifemove.listener.SimpleAsynchronousTaskListener;
 import br.com.lifemove.model.User;
 import br.com.lifemove.service.AuthenticationService;
 
-public class RegisterActivity extends AppCompatActivity {
+public class RegistrationActivity extends AppCompatActivity {
 
     private EditText nameInput, usernameInput, emailInput, passwordInput, confirmPasswordInput;
     private Button signUp;
@@ -28,17 +26,17 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.activity_registration);
 
         signUp = findViewById(R.id.sign_up);
-        nameInput = findViewById(R.id.name_field);
-        usernameInput = findViewById(R.id.register_username_field);
-        emailInput = findViewById(R.id.email_field);
-        passwordInput = findViewById(R.id.register_password_field);
-        confirmPasswordInput = findViewById(R.id.confirm_password_field);
+        nameInput = findViewById(R.id.registration_name_field);
+        usernameInput = findViewById(R.id.registration_username_field);
+        emailInput = findViewById(R.id.registration_email_field);
+        passwordInput = findViewById(R.id.registration_password_field);
+        confirmPasswordInput = findViewById(R.id.registration_confirm_password_field);
 
-        ImageView logo = findViewById(R.id.logo_holder);
-        logo.setImageResource(R.drawable.lifemove_logo_vector);
+        ImageView logo = findViewById(R.id.registration_logo_holder);
+        logo.setImageResource(R.drawable.light_logo);
 
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,13 +47,13 @@ public class RegisterActivity extends AppCompatActivity {
                 String password = passwordInput.getText().toString();
 
                 if (name.isEmpty() || username.isEmpty() || email.isEmpty() || password.isEmpty()) {
-                    Toast.makeText(RegisterActivity.this, "Preencha todos os campos", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegistrationActivity.this, "Preencha todos os campos", Toast.LENGTH_LONG).show();
                 } else {
                     String passwordConfirmation = confirmPasswordInput.getText().toString();
                     if(password.compareTo(passwordConfirmation) != 0) {
                         passwordInput.setTextColor(getResources().getColor(R.color.red));
                         confirmPasswordInput.setTextColor(getResources().getColor(R.color.red));
-                        Toast.makeText(RegisterActivity.this, "Confirmação inválida.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegistrationActivity.this, "Confirmação inválida.", Toast.LENGTH_SHORT).show();
                     } else {
                         signUp.setEnabled(false);
                         AuthenticationService registerService = new AuthenticationService(getSimpleAsynchronousTaskListener());
@@ -71,14 +69,14 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void onSuccess() {
-                startActivity(new Intent(RegisterActivity.this, HomeActivity.class));
-                Toast.makeText(RegisterActivity.this, "Cadastro efetuado com sucesso", Toast.LENGTH_LONG).show();
+                startActivity(new Intent(RegistrationActivity.this, HomeActivity.class));
+                Toast.makeText(RegistrationActivity.this, "Cadastro efetuado com sucesso", Toast.LENGTH_LONG).show();
                 finish();
             }
 
             @Override
             public void onFailure(String reason) {
-                Toast.makeText(RegisterActivity.this, reason, Toast.LENGTH_LONG).show();
+                Toast.makeText(RegistrationActivity.this, reason, Toast.LENGTH_LONG).show();
             }
         };
     }
