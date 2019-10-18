@@ -10,19 +10,14 @@
         android:roundIcon="@mipmap/lifemove_badge_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".view.HomeActivity"/>
-        <activity
-            android:name=".view.ResetPasswordActivity"
-            android:theme="@style/AppCompatFullScreen" />
+        <activity android:name=".view.HomeActivity"/>
+        <activity android:name=".view.ResetPasswordActivity"/>
         <activity
             android:name=".view.RegistrationActivity"
-            android:configChanges="orientation|screenSize"
-            android:theme="@style/AppCompatFullScreen" />
+            android:configChanges="orientation|screenSize"/>
         <activity
             android:name=".view.LoginActivity"
-            android:configChanges="orientation|screenSize"
-            android:theme="@style/AppCompatFullScreen">
+            android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

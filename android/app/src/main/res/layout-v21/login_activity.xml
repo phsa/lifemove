@@ -102,7 +102,6 @@
             android:textSize="14sp"
             android:textColor="@color/white"
             android:textStyle="bold"
-            android:backgroundTint="@color/white"
             app:layout_constraintBottom_toTopOf="@+id/login_sign_up"
             app:layout_constraintEnd_toEndOf="@+id/login_sign_up"
             app:layout_constraintStart_toStartOf="@+id/login_sign_up" />
@@ -113,7 +112,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="69dp"
             android:background="@drawable/primary_rounded_button"
-            android:fontFamily="sans-serif-black"
             android:text="@string/prompt_sign_up"
             android:textColor="@color/white"
             android:textSize="18sp"

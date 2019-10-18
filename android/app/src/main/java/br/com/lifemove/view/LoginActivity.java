@@ -26,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
+        if (getSupportActionBar() != null) getSupportActionBar().hide();
 
         String user = SharedPreferencesUtils.readOfSharedPreferences("user");
         if (user != null && !user.isEmpty()) {
