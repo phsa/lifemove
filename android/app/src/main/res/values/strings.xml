@@ -8,8 +8,9 @@
     <string name="prompt_sign_in">SIGN IN</string>
     <string name="hint_username">Username</string>
     <string name="hint_password">Password</string>
-    <string name="prompt_reset_password"><u>Reset password.</u></string>
     <string name="prompt_first_time">First time here?</string>
+    <string name="prompt_reset_password"><u>Reset password.</u></string>
+    <string name="prompt_forgot_password">Forgot your password?</string>
 
     <!-- Strings related to Sign up -->
     <string name="prompt_sign_up">SIGN UP</string>
@@ -20,6 +21,6 @@
     <string name="prompt_already_user">Already a user?</string>
     <string name="prompt_profile">Profile</string>
     <string name="provide_email_hint">Type your email…</string>
-    <string name="prompt_reset">RESET</string>
-    <string name="reset_password_message"><c>Forgot your password?\nWe\'ll send a new one to you.</c></string>
+    <string name="prompt_send_link">SEND A LINK</string>
+    <string name="recovery_explanation">We will send to your email a recovery link.</string>
 </resources>
