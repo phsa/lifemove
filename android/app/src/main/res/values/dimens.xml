@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- Button dimens -->
     <dimen name="button_radius">20dp</dimen>
     <dimen name="button_width">150dp</dimen>
+    <dimen name="button_text_size">18sp</dimen>
+    <dimen name="button_side_padding">16dp</dimen>
+    <dimen name="action_button_margins">32dp</dimen>
+    <dimen name="margin_between_input_fields">8dp</dimen>
+    <item name="input_field_width_percentage" type="dimen" format="float">0.7</item>
 </resources>

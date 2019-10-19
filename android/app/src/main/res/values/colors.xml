@@ -18,6 +18,8 @@
     <color name="highlight">#71AECD</color>
     <color name="soft_highlight">#B4E3F5</color>
     <color name="light_highlight">#E3E3FF</color>
+
+
     <color name="hint_color">@color/dark_highlight</color>
 
 

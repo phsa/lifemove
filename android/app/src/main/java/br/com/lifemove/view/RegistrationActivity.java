@@ -27,8 +27,9 @@ public class RegistrationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
+        if (getSupportActionBar() != null) getSupportActionBar().hide();
 
-        signUp = findViewById(R.id.sign_up);
+        signUp = findViewById(R.id.create_account);
         nameInput = findViewById(R.id.registration_name_field);
         usernameInput = findViewById(R.id.registration_username_field);
         emailInput = findViewById(R.id.registration_email_field);
