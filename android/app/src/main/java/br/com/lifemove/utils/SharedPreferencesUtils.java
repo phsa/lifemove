@@ -6,14 +6,16 @@ import android.util.Log;
 
 public class SharedPreferencesUtils {
 
-    private static final String EMPTY = "";
+    public static final String USER_KEY = "user";
+    public static final String PASSWORD_KEY = "password";
+    private static final String PREFERENCE = "preference";
 
     public static void writeInSharedPreferences(String key, String value) {
-        SharedPreferences preferences = LifeMoveApplicationUtils.getLifeMoveAppContext().getSharedPreferences("preference", Context.MODE_PRIVATE);
+        SharedPreferences preferences = LifeMoveApplicationUtils.getLifeMoveAppContext().getSharedPreferences(PREFERENCE, Context.MODE_PRIVATE);
         SharedPreferences.Editor edit = preferences.edit();
         if (key != null) {
             if(value == null){
-                value = EMPTY;
+                value = StringUtils.EMPTY;
             }
             edit.putString(key, value);
             edit.apply();
@@ -21,9 +23,8 @@ public class SharedPreferencesUtils {
     }
 
     public static String readOfSharedPreferences(String key){
-        SharedPreferences preferences = LifeMoveApplicationUtils.getLifeMoveAppContext().getSharedPreferences("preference", Context.MODE_PRIVATE);
-        String value = preferences.getString(String.valueOf(key), EMPTY);
-        return value;
+        SharedPreferences preferences = LifeMoveApplicationUtils.getLifeMoveAppContext().getSharedPreferences(PREFERENCE, Context.MODE_PRIVATE);
+        return preferences.getString(String.valueOf(key), StringUtils.EMPTY);
     }
 
 }

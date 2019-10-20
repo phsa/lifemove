@@ -26,9 +26,9 @@ public class ResetPasswordActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (StringUtils.checkEmail(emailInput.getText().toString())) {
-                    Toast.makeText(ResetPasswordActivity.this, "[Ação Fake] Enviamos um email pra você.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ResetPasswordActivity.this, getString(R.string.email_was_sent), Toast.LENGTH_SHORT).show();
                 }
-                else Toast.makeText(ResetPasswordActivity.this, "Formato de email inválido.", Toast.LENGTH_SHORT).show();
+                else Toast.makeText(ResetPasswordActivity.this, getString(R.string.invalid_email_format), Toast.LENGTH_SHORT).show();
             }
         });
     }

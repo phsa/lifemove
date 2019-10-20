@@ -17,6 +17,7 @@ import br.com.lifemove.R;
 import br.com.lifemove.listener.SimpleAsynchronousTaskListener;
 import br.com.lifemove.model.User;
 import br.com.lifemove.service.AuthenticationService;
+import br.com.lifemove.utils.StringUtils;
 
 public class RegistrationActivity extends AppCompatActivity {
 
@@ -48,13 +49,13 @@ public class RegistrationActivity extends AppCompatActivity {
                 String password = passwordInput.getText().toString();
 
                 if (name.isEmpty() || username.isEmpty() || email.isEmpty() || password.isEmpty()) {
-                    Toast.makeText(RegistrationActivity.this, "Preencha todos os campos", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegistrationActivity.this, StringUtils.valueOf(R.string.all_fields_must_be_filled), Toast.LENGTH_LONG).show();
                 } else {
                     String passwordConfirmation = confirmPasswordInput.getText().toString();
                     if(password.compareTo(passwordConfirmation) != 0) {
                         passwordInput.setTextColor(getResources().getColor(R.color.red));
                         confirmPasswordInput.setTextColor(getResources().getColor(R.color.red));
-                        Toast.makeText(RegistrationActivity.this, "Confirmação inválida.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegistrationActivity.this, getString(R.string.invalid_password_confirmation), Toast.LENGTH_SHORT).show();
                     } else {
                         signUp.setEnabled(false);
                         AuthenticationService registerService = new AuthenticationService(getSimpleAsynchronousTaskListener());
@@ -71,7 +72,7 @@ public class RegistrationActivity extends AppCompatActivity {
             @Override
             public void onSuccess() {
                 startActivity(new Intent(RegistrationActivity.this, HomeActivity.class));
-                Toast.makeText(RegistrationActivity.this, "Cadastro efetuado com sucesso", Toast.LENGTH_LONG).show();
+                Toast.makeText(RegistrationActivity.this, getString(R.string.successfully_registration), Toast.LENGTH_LONG).show();
                 finish();
             }
 

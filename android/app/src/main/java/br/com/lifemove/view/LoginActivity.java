@@ -28,7 +28,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.login_activity);
         if (getSupportActionBar() != null) getSupportActionBar().hide();
 
-        String user = SharedPreferencesUtils.readOfSharedPreferences("user");
+        String user = SharedPreferencesUtils.readOfSharedPreferences(SharedPreferencesUtils.USER_KEY);
         if (user != null && !user.isEmpty()) {
             startActivity(new Intent(LoginActivity.this, HomeActivity.class));
             finish();
