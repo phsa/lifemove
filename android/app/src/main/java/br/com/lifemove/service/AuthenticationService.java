@@ -42,7 +42,7 @@ public class AuthenticationService {
             SharedPreferencesUtils.writeInSharedPreferences(SharedPreferencesUtils.USER_KEY, user.getUsername());
             SharedPreferencesUtils.writeInSharedPreferences(SharedPreferencesUtils.PASSWORD_KEY, user.getPassword());
             listener.onSuccess();
-        } else listener.onFailure(StringUtils.valueOf(R.string.authentication_failed));
+        } else listener.onFailure(StringUtils.valueOf(R.string.authentication_has_crashed));
     }
 
 }

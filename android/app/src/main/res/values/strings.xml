@@ -1,26 +1,27 @@
 <resources>
     <string name="app_name">LifeMove</string>
 
-    <!-- Common strings -->
-
     <!-- Strings related to Login -->
     <string name="prompt_sign_in">SIGN IN</string>
     <string name="hint_username">Username</string>
     <string name="hint_password">Password</string>
     <string name="prompt_first_time">First time here?</string>
     <string name="login_failed">Invalid user or password.</string>
+    <string name="authentication_has_crashed">Something went wrong. No user provided.</string>
     <string name="logging_in">Logging In…</string>
 
     <!-- Strings related to Sign up -->
     <string name="prompt_sign_up">SIGN UP</string>
     <string name="hint_name">Name</string>
-    <string name="hint_email">email</string>
-    <string name="hint_confirm_password">Confirm password</string>
-    <string name="prompt_create_account">CREATE ACCOUNT</string>
-    <string name="prompt_already_user">Already a user?</string>
     <string name="unavailable_username">Unavailable username. Try other one.</string>
-    <string name="authentication_failed">Something went wrong. No user provided.</string>
+    <string name="hint_email">email</string>
+    <string name="invalid_email_format">Invalid email format.</string>
+    <string name="hint_confirm_password">Confirm password</string>
+    <string name="invalid_password_confirmation">The confirmation doesn\'t match your password.</string>
+    <string name="prompt_create_account">CREATE ACCOUNT</string>
     <string name="all_fields_must_be_filled">Fulfill all input fields.</string>
+    <string name="successfully_registration">Successfully registration.</string>
+    <string name="prompt_already_user">Already a user?</string>
 
     <!-- Strings related to Reset Password -->
     <string name="prompt_reset_password"><u>Reset password.</u></string>
@@ -28,11 +29,8 @@
     <string name="provide_email_hint">Type your email…</string>
     <string name="recovery_explanation">We will send to your email a recovery link.</string>
     <string name="prompt_send_link">SEND A LINK</string>
+    <string name="email_was_sent">We have sent a email to you.</string>
 
     <!-- String related to Profile -->
     <string name="prompt_profile">Profile</string>
-    <string name="email_was_sent">We have sent a email to you.</string>
-    <string name="invalid_email_format">Invalid email format.</string>
-    <string name="invalid_password_confirmation">The confirmation doesn\'t match your password.</string>
-    <string name="successfully_registration">Successfully registration</string>
 </resources>

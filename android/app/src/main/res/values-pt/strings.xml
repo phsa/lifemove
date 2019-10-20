@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">LifeMove</string>
+
+    <!-- Strings relacionadas ao Login -->
+    <string name="hint_username">Nome de usuário</string>
+    <string name="hint_password">Senha</string>
+    <string name="prompt_sign_in">ENTRAR</string>
+    <string name="all_fields_must_be_filled">Preencha todos os campos.</string>
+    <string name="login_failed">Usuário ou senha inválidos.</string>
+    <string name="authentication_has_crashed">Algo deu errado ao efetuar login. \nNenhum usuário foi fornecido.</string>
+    <string name="logging_in">Entrando…</string>
+    <string name="prompt_first_time">Primeira vez por aqui?</string>
+
+    <!-- Strings relacionadas ao Cadastro -->
+    <string name="prompt_sign_up">CADASTRAR-SE</string>
+    <string name="hint_name">Nome</string>
+    <string name="hint_email">email</string>
+    <string name="invalid_email_format">Formato de email inválido.</string>
+    <string name="hint_confirm_password">Confirme sua senha</string>
+    <string name="invalid_password_confirmation">A confirmação não corresponde a senha.</string>
+    <string name="prompt_create_account">CRIAR CONTA</string>
+    <string name="prompt_already_user">Já tem uma conta?</string>
+    <string name="unavailable_username">Nome de usuário indisponível. Tente um diferente.</string>
+    <string name="successfully_registration">Cadastro efetuado com sucesso.</string>
+
+    <!-- Strings relacionadas a Redefinição de Senha -->
+    <string name="prompt_reset_password"><u>Redefinir senha.</u></string>
+    <string name="prompt_forgot_password">Esqueceu a sua senha?</string>
+    <string name="provide_email_hint">Digite seu email…</string>
+    <string name="recovery_explanation">Enviaremos um email com um link de recuperação.</string>
+    <string name="prompt_send_link">ENIVIAR LINK</string>
+    <string name="email_was_sent">Enviamos um email pra você.</string>
+
+    <!-- String relacionadas ao Perfil -->
+    <string name="prompt_profile">Perfil</string>
+
+</resources>
