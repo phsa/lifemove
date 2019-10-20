@@ -1,7 +1,5 @@
 package br.com.lifemove.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,8 +8,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-//import com.google.firebase.database.DatabaseReference;
-//import com.google.firebase.database.FirebaseDatabase;
+import androidx.appcompat.app.AppCompatActivity;
 
 import br.com.lifemove.R;
 import br.com.lifemove.listener.SimpleAsynchronousTaskListener;
@@ -19,10 +16,13 @@ import br.com.lifemove.model.User;
 import br.com.lifemove.service.AuthenticationService;
 import br.com.lifemove.utils.StringUtils;
 
+//import com.google.firebase.database.DatabaseReference;
+//import com.google.firebase.database.FirebaseDatabase;
+
 public class RegistrationActivity extends AppCompatActivity {
 
     private EditText nameInput, usernameInput, emailInput, passwordInput, confirmPasswordInput;
-    private Button signUp;
+    private Button createAccount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,7 @@ public class RegistrationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_registration);
         if (getSupportActionBar() != null) getSupportActionBar().hide();
 
-        signUp = findViewById(R.id.create_account);
+        createAccount = findViewById(R.id.create_account);
         nameInput = findViewById(R.id.registration_name_field);
         usernameInput = findViewById(R.id.registration_username_field);
         emailInput = findViewById(R.id.registration_email_field);
@@ -40,7 +40,7 @@ public class RegistrationActivity extends AppCompatActivity {
         ImageView logo = findViewById(R.id.registration_logo_holder);
         logo.setImageResource(R.drawable.light_logo);
 
-        signUp.setOnClickListener(new View.OnClickListener() {
+        createAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String name = nameInput.getText().toString();
@@ -57,7 +57,7 @@ public class RegistrationActivity extends AppCompatActivity {
                         confirmPasswordInput.setTextColor(getResources().getColor(R.color.red));
                         Toast.makeText(RegistrationActivity.this, getString(R.string.invalid_password_confirmation), Toast.LENGTH_SHORT).show();
                     } else {
-                        signUp.setEnabled(false);
+                        createAccount.setEnabled(false);
                         AuthenticationService registerService = new AuthenticationService(getSimpleAsynchronousTaskListener());
                         registerService.register(new User(name, username, email, password));
                     }
