@@ -3,8 +3,6 @@
 
     <!-- Basic colors -->
     <color name="black">#000000</color>
-    <color name="dark_green">#628C6C</color>
-    <color name="green">#00FF00</color>
     <color name="white">#FFFFFF</color>
     <color name="red">#FF0000</color>
 
@@ -19,8 +17,10 @@
     <color name="soft_highlight">#B4E3F5</color>
     <color name="light_highlight">#E3E3FF</color>
 
-    <color name="hint_color">@color/dark_highlight</color>
-    <color name="input_field_color">@color/white</color>
+    <color name="hint">@color/dark_highlight</color>
+    <color name="input_field">@color/white</color>
+    <color name="disabling">#6A7E93</color>
+    <color name="disabled_text">#BEC2C6</color>
 
 
 </resources>
