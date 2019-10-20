@@ -5,6 +5,11 @@
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
     <color name="red">#FF0000</color>
+    <color name="green">#00A489</color>
+    <color name="soft_green">#00BFA5</color>
+    <color name="blue">#03A9F4</color>
+    <color name="orange">#EF6C00</color>
+    <color name="soft_orange">#FCA160</color>
 
     <!-- LifeMove palette -->
     <color name="darkest_primary">#12192B</color>
@@ -17,6 +22,7 @@
     <color name="soft_highlight">#B4E3F5</color>
     <color name="light_highlight">#E3E3FF</color>
 
+    <!-- Attribute colors -->
     <color name="hint">@color/dark_highlight</color>
     <color name="input_field">@color/white</color>
     <color name="disabling">#6A7E93</color>
