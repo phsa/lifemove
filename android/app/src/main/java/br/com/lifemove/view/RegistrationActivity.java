@@ -169,20 +169,17 @@ public class RegistrationActivity extends AppCompatActivity {
 
                 if (usernameInputHasText) {
                     if (alreadyInUse) {
-//                        usernameInput.setCompoundDrawables(null, null, retrieveDrawable(R.drawable.remove_icon), null);
                         usernameAvailability.setImageDrawable(retrieveDrawable(R.drawable.remove_icon));
                         usernameAvailability.setVisibility(View.VISIBLE);
                         usernameInput.setTextColor(getResources().getColor(R.color.red));
                         DrawableCompat.setTint(inputBackground, getResources().getColor(R.color.red));
                     } else {
-//                        usernameInput.setCompoundDrawables(null, null, retrieveDrawable(R.drawable.checked_icon), null);
                         usernameAvailability.setImageDrawable(retrieveDrawable(R.drawable.checked_icon));
                         usernameAvailability.setVisibility(View.VISIBLE);
                         usernameInput.setTextColor(getResources().getColor(R.color.soft_green));
                         DrawableCompat.setTint(inputBackground, getResources().getColor(R.color.soft_green));
                     }
                 } else {
-//                    usernameInput.setCompoundDrawables(null, null, null, null);
                     usernameAvailability.setVisibility(View.INVISIBLE);
                     DrawableCompat.setTint(inputBackground, getResources().getColor(R.color.highlight));
                 }
