@@ -56,6 +56,8 @@
             android:textColorHint="@color/hint"
             android:inputType="textEmailAddress"
             android:textColor="@color/input_field"
+            android:drawableEnd="@drawable/transparent_icon"
+            android:drawablePadding="4dp"
             app:layout_constraintWidth_percent="@dimen/input_field_width_percentage"
             app:layout_constraintTop_toBottomOf="@+id/registration_name_field"
             app:layout_constraintEnd_toEndOf="parent"

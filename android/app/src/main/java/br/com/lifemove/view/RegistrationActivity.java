@@ -59,34 +59,15 @@ public class RegistrationActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 setCreateButtonsTapAbility();
+                DrawableCompat.setTint(emailInput.getBackground(), getResources().getColor(R.color.highlight));
             }
         };
 
         nameInput.addTextChangedListener(watcher);
-
-        configureUsernameField();
-
         emailInput.addTextChangedListener(watcher);
-        passwordInput.addTextChangedListener(new optTextWatcher() {
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                setCreateButtonsTapAbility();
-
-                if(charSequence.length() > 0 && charSequence.length() < 8) {
-                    passwordWarning.setVisibility(View.VISIBLE);
-                    passwordInput.setTextColor(getResources().getColor(R.color.red));
-                    DrawableCompat.setTint(passwordInput.getBackground(), getResources().getColor(R.color.red));
-                } else {
-                    passwordWarning.setVisibility(View.INVISIBLE);
-                    passwordInput.setTextColor(getResources().getColor(R.color.white));
-                    DrawableCompat.setTint(passwordInput.getBackground(), getResources().getColor(R.color.highlight));
-                }
-            }
-        });
         confirmPasswordInput.addTextChangedListener(watcher);
 
-        ImageView logo = findViewById(R.id.registration_logo_holder);
-        logo.setImageResource(R.drawable.light_logo);
+        configureInputFields();
 
         createAccount.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,7 +80,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 String password = passwordInput.getText().toString();
                 String passwordConfirmation = confirmPasswordInput.getText().toString();
 
-                if (name.isEmpty() || username.isEmpty() || email.isEmpty() || password.isEmpty() || passwordConfirmation.isEmpty()) {
+                if (emptyFieldsWereIdentified()) {
                     Toast.makeText(RegistrationActivity.this, StringUtils.valueOf(R.string.all_fields_must_be_filled), Toast.LENGTH_LONG).show();
                 } else if (username.matches(StringUtils.INVALID_USERNAME_PATTERN)) {
                     DrawableCompat.setTint(usernameInput.getBackground(), getResources().getColor(R.color.red));
@@ -123,6 +104,31 @@ public class RegistrationActivity extends AppCompatActivity {
         registerService = new AccessControlService(getSimpleAsynchronousTaskListener());
     }
 
+    private boolean emptyFieldsWereIdentified() {
+        boolean thereAreEmptyFields = false;
+        if (nameInput.getText().toString().isEmpty()) {
+            thereAreEmptyFields = true;
+            DrawableCompat.setTint(nameInput.getBackground(), getResources().getColor(R.color.red));
+        }
+        if (usernameInput.getText().toString().isEmpty()) {
+            thereAreEmptyFields = true;
+            DrawableCompat.setTint(usernameInput.getBackground(), getResources().getColor(R.color.red));
+        }
+        if (emailInput.getText().toString().isEmpty()) {
+            thereAreEmptyFields = true;
+            DrawableCompat.setTint(emailInput.getBackground(), getResources().getColor(R.color.red));
+        }
+        if (passwordInput.getText().toString().isEmpty()) {
+            thereAreEmptyFields = true;
+            DrawableCompat.setTint(passwordInput.getBackground(), getResources().getColor(R.color.red));
+        }
+        if (confirmPasswordInput.getText().toString().isEmpty()) {
+            thereAreEmptyFields = true;
+            DrawableCompat.setTint(confirmPasswordInput.getBackground(), getResources().getColor(R.color.red));
+        }
+
+        return  thereAreEmptyFields;
+    }
 
 
     /**
@@ -130,7 +136,8 @@ public class RegistrationActivity extends AppCompatActivity {
      */
 
     private void setViewElements() {
-        createAccount = findViewById(R.id.create_account);
+        ImageView logo = findViewById(R.id.registration_logo_holder);
+        logo.setImageResource(R.drawable.light_logo);
         nameInput = findViewById(R.id.registration_name_field);
         usernameInput = findViewById(R.id.registration_username_field);
         usernameAvailability = findViewById(R.id.username_availability_sign);
@@ -138,6 +145,7 @@ public class RegistrationActivity extends AppCompatActivity {
         passwordInput = findViewById(R.id.registration_password_field);
         passwordWarning = findViewById(R.id.password_warning);
         confirmPasswordInput = findViewById(R.id.registration_confirm_password_field);
+        createAccount = findViewById(R.id.create_account);
 
         int highlight = getResources().getColor(R.color.highlight);
         DrawableCompat.setTint(nameInput.getBackground(), highlight);
@@ -148,7 +156,7 @@ public class RegistrationActivity extends AppCompatActivity {
         DrawableCompat.setTint(confirmPasswordInput.getBackground(), highlight);
     }
 
-    private void configureUsernameField() {
+    private void configureInputFields() {
         usernameInput.addTextChangedListener(new optTextWatcher() {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -161,17 +169,20 @@ public class RegistrationActivity extends AppCompatActivity {
 
                 if (usernameInputHasText) {
                     if (alreadyInUse) {
+//                        usernameInput.setCompoundDrawables(null, null, retrieveDrawable(R.drawable.remove_icon), null);
                         usernameAvailability.setImageDrawable(retrieveDrawable(R.drawable.remove_icon));
                         usernameAvailability.setVisibility(View.VISIBLE);
                         usernameInput.setTextColor(getResources().getColor(R.color.red));
                         DrawableCompat.setTint(inputBackground, getResources().getColor(R.color.red));
                     } else {
+//                        usernameInput.setCompoundDrawables(null, null, retrieveDrawable(R.drawable.checked_icon), null);
                         usernameAvailability.setImageDrawable(retrieveDrawable(R.drawable.checked_icon));
                         usernameAvailability.setVisibility(View.VISIBLE);
                         usernameInput.setTextColor(getResources().getColor(R.color.soft_green));
                         DrawableCompat.setTint(inputBackground, getResources().getColor(R.color.soft_green));
                     }
                 } else {
+//                    usernameInput.setCompoundDrawables(null, null, null, null);
                     usernameAvailability.setVisibility(View.INVISIBLE);
                     DrawableCompat.setTint(inputBackground, getResources().getColor(R.color.highlight));
                 }
@@ -194,6 +205,26 @@ public class RegistrationActivity extends AppCompatActivity {
                         }
                 }
         );
+
+        passwordInput.addTextChangedListener(new optTextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                setCreateButtonsTapAbility();
+
+                if(charSequence.length() > 0 && charSequence.length() < 8) {
+                    passwordWarning.setVisibility(View.VISIBLE);
+                    passwordInput.setTextColor(getResources().getColor(R.color.red));
+                    DrawableCompat.setTint(passwordInput.getBackground(), getResources().getColor(R.color.red));
+                } else if (charSequence.length() >= 32) {
+                    Toast.makeText(RegistrationActivity.this, R.string.maximum_password_length, Toast.LENGTH_SHORT).show();
+                    DrawableCompat.setTint(passwordInput.getBackground(), getResources().getColor(R.color.red));
+                } else {
+                    passwordWarning.setVisibility(View.INVISIBLE);
+                    passwordInput.setTextColor(getResources().getColor(R.color.white));
+                    DrawableCompat.setTint(passwordInput.getBackground(), getResources().getColor(R.color.highlight));
+                }
+            }
+        });
     }
 
 
