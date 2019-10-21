@@ -11,12 +11,16 @@
     <string name="login_failed">Usuário ou senha inválidos.</string>
     <string name="authentication_has_crashed">Algo deu errado ao efetuar login. \nNenhum usuário foi fornecido.</string>
     <string name="logging_in">Entrando…</string>
-    <string name="prompt_first_time">Primeira vez por aqui?</string>
+    <string name="minimum_password_length">A senha deve conter pelo menos 8 caracteres.</string>
+    <string name="maximum_password_length">A senha deve ter no máximo 32 caracteres.</string>
+
 
     <!-- Strings relacionadas ao Cadastro -->
+    <string name="prompt_first_time">Primeira vez por aqui?</string>
     <string name="prompt_sign_up">CADASTRAR-SE</string>
     <string name="hint_name">Nome</string>
     <string name="unavailable_username">Nome de usuário indisponível. Tente um diferente.</string>
+    <string name="usernames_characters_restriction">Alguns caracteres não são permitidos em nomes de usuário.</string>
     <string name="invalid_username_characters_message">Nome de usuário com caracteres inválidos. \nPor favor, use apenas letras, dígitos,  _(underline),  -(hífen) and .(pontos).</string>
     <string name="hint_email">email</string>
     <string name="invalid_email_format">Formato de email inválido.</string>

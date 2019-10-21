@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,7 +35,10 @@ public class RegistrationActivity extends AppCompatActivity {
     private ImageView usernameAvailability;
 
     private EditText emailInput;
+
     private EditText passwordInput;
+    private TextView passwordWarning;
+
     private EditText confirmPasswordInput;
 
     private Button createAccount;
@@ -49,28 +53,106 @@ public class RegistrationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_registration);
         if (getSupportActionBar() != null) getSupportActionBar().hide();
 
+        setViewElements();
+
+        TextWatcher watcher = new optTextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                setCreateButtonsTapAbility();
+            }
+        };
+
+        nameInput.addTextChangedListener(watcher);
+
+        configureUsernameField();
+
+        emailInput.addTextChangedListener(watcher);
+        passwordInput.addTextChangedListener(new optTextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                setCreateButtonsTapAbility();
+
+                if(charSequence.length() > 0 && charSequence.length() < 8) {
+                    passwordWarning.setVisibility(View.VISIBLE);
+                    passwordInput.setTextColor(getResources().getColor(R.color.red));
+                    DrawableCompat.setTint(passwordInput.getBackground(), getResources().getColor(R.color.red));
+                } else {
+                    passwordWarning.setVisibility(View.INVISIBLE);
+                    passwordInput.setTextColor(getResources().getColor(R.color.white));
+                    DrawableCompat.setTint(passwordInput.getBackground(), getResources().getColor(R.color.highlight));
+                }
+            }
+        });
+        confirmPasswordInput.addTextChangedListener(watcher);
+
+        ImageView logo = findViewById(R.id.registration_logo_holder);
+        logo.setImageResource(R.drawable.light_logo);
+
+        createAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setEnablingElements(false);
+
+                String name = nameInput.getText().toString();
+                String username = usernameInput.getText().toString();
+                String email = emailInput.getText().toString();
+                String password = passwordInput.getText().toString();
+                String passwordConfirmation = confirmPasswordInput.getText().toString();
+
+                if (name.isEmpty() || username.isEmpty() || email.isEmpty() || password.isEmpty() || passwordConfirmation.isEmpty()) {
+                    Toast.makeText(RegistrationActivity.this, StringUtils.valueOf(R.string.all_fields_must_be_filled), Toast.LENGTH_LONG).show();
+                } else if (username.matches(StringUtils.INVALID_USERNAME_PATTERN)) {
+                    DrawableCompat.setTint(usernameInput.getBackground(), getResources().getColor(R.color.red));
+                    Toast.makeText(RegistrationActivity.this, R.string.invalid_username_characters_message, Toast.LENGTH_LONG).show();
+                } else if (!StringUtils.checkEmail(email)) {
+                    DrawableCompat.setTint(emailInput.getBackground(), getResources().getColor(R.color.red));
+                    Toast.makeText(RegistrationActivity.this, getString(R.string.invalid_email_format), Toast.LENGTH_SHORT).show();
+                } else if (password.compareTo(passwordConfirmation) != 0) {
+                    confirmPasswordInput.setTextColor(getResources().getColor(R.color.red));
+                    DrawableCompat.setTint(confirmPasswordInput.getBackground(), getResources().getColor(R.color.red));
+                    Toast.makeText(RegistrationActivity.this, getString(R.string.invalid_password_confirmation), Toast.LENGTH_SHORT).show();
+                } else {
+                    createAccount.setEnabled(false);
+                    registerService.register(new User(name, username, email, password));
+                }
+
+                setEnablingElements(true);
+            }
+        });
+
+        registerService = new AccessControlService(getSimpleAsynchronousTaskListener());
+    }
+
+
+
+    /**
+     * SETTING UP VIEW ELEMENTS
+     */
+
+    private void setViewElements() {
         createAccount = findViewById(R.id.create_account);
         nameInput = findViewById(R.id.registration_name_field);
         usernameInput = findViewById(R.id.registration_username_field);
         usernameAvailability = findViewById(R.id.username_availability_sign);
         emailInput = findViewById(R.id.registration_email_field);
         passwordInput = findViewById(R.id.registration_password_field);
+        passwordWarning = findViewById(R.id.password_warning);
         confirmPasswordInput = findViewById(R.id.registration_confirm_password_field);
 
-        TextWatcher watcher = new optTextWatcher() {
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (charSequence.toString().length() > 0)
-                    setCreateButtonsTapAbility();
-            }
-        };
+        int highlight = getResources().getColor(R.color.highlight);
+        DrawableCompat.setTint(nameInput.getBackground(), highlight);
+        DrawableCompat.setTint(usernameInput.getBackground(), highlight);
+        DrawableCompat.setTint(emailInput.getBackground(), highlight);
+        DrawableCompat.setTint(usernameInput.getBackground(), highlight);
+        DrawableCompat.setTint(passwordInput.getBackground(), highlight);
+        DrawableCompat.setTint(confirmPasswordInput.getBackground(), highlight);
+    }
 
-        nameInput.addTextChangedListener(watcher);
-
+    private void configureUsernameField() {
         usernameInput.addTextChangedListener(new optTextWatcher() {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                boolean usernameInputHasText = charSequence.toString().length() > 0;
+                boolean usernameInputHasText = charSequence.length() > 0;
                 setCreateButtonsTapAbility();
 
                 boolean alreadyInUse = registerService.alreadyInUse(charSequence.toString());
@@ -91,90 +173,29 @@ public class RegistrationActivity extends AppCompatActivity {
                     }
                 } else {
                     usernameAvailability.setVisibility(View.INVISIBLE);
-                    DrawableCompat.setTint(inputBackground, getResources().getColor(R.color.black));
-                }
-            }
-        });
-//        usernameInput.setFilters(new InputFilter[] {
-//                    new InputFilter() {
-//                        @Override
-//                        public CharSequence filter(CharSequence charSequence, int start, int end, Spanned spanned, int dstart, int dend) {
-//                            if (charSequence.toString().matches("^[a-zA-Z0-9]*"))
-//                                return null;
-//                            else
-//                                return charSequence.toString().replaceAll(StringUtils.INVALID_USERNAME_PATTERN, "");
-//                        }
-//                    }
-//                }
-//        );
-
-        emailInput.addTextChangedListener(watcher);
-        passwordInput.addTextChangedListener(watcher);
-        confirmPasswordInput.addTextChangedListener(watcher);
-
-        ImageView logo = findViewById(R.id.registration_logo_holder);
-        logo.setImageResource(R.drawable.light_logo);
-
-        createAccount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String name = nameInput.getText().toString();
-                String username = usernameInput.getText().toString();
-                String email = emailInput.getText().toString();
-                String password = passwordInput.getText().toString();
-                String passwordConfirmation = confirmPasswordInput.getText().toString();
-
-                if (name.isEmpty() || username.isEmpty() || email.isEmpty() || password.isEmpty() || passwordConfirmation.isEmpty()) {
-                    Toast.makeText(RegistrationActivity.this, StringUtils.valueOf(R.string.all_fields_must_be_filled), Toast.LENGTH_LONG).show();
-                } else if (username.matches(StringUtils.INVALID_USERNAME_PATTERN)) {
-                    Toast.makeText(RegistrationActivity.this, R.string.invalid_username_characters_message, Toast.LENGTH_LONG).show();
-                } else if (!StringUtils.checkEmail(emailInput.getText().toString())) {
-                    Toast.makeText(RegistrationActivity.this, getString(R.string.invalid_email_format), Toast.LENGTH_SHORT).show();
-                } else {
-                    if(password.compareTo(passwordConfirmation) != 0) {
-                        passwordInput.setTextColor(getResources().getColor(R.color.red));
-                        confirmPasswordInput.setTextColor(getResources().getColor(R.color.red));
-                        Toast.makeText(RegistrationActivity.this, getString(R.string.invalid_password_confirmation), Toast.LENGTH_SHORT).show();
-                    } else {
-                        createAccount.setEnabled(false);
-                        registerService.register(new User(name, username, email, password));
-                    }
+                    DrawableCompat.setTint(inputBackground, getResources().getColor(R.color.highlight));
                 }
             }
         });
 
-        registerService = new AccessControlService(getSimpleAsynchronousTaskListener());
+        usernameInput.setFilters(new InputFilter[] {
+                        new InputFilter() {
+                            @Override
+                            public CharSequence filter(CharSequence charSequence, int start, int end, Spanned spanned, int dstart, int dend) {
+                                if (charSequence.toString().matches("^[a-zA-Z0-9]*"))
+                                    return null;
+                                else {
+                                    String result = charSequence.toString().replaceAll(StringUtils.INVALID_USERNAME_PATTERN, "");
+                                    if (result.length() != charSequence.length())
+                                        Toast.makeText(RegistrationActivity.this, R.string.usernames_characters_restriction, Toast.LENGTH_SHORT).show();
+                                    return result;
+                                }
+                            }
+                        }
+                }
+        );
     }
 
-    private Drawable retrieveDrawable(int dResId) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-            return getDrawable(dResId);
-        else
-            return getResources().getDrawable(dResId, getTheme());
-    }
-
-
-
-    /**
-     * BUTTON BEHAVIOR
-     */
-
-    private void enableCreateButton() {
-        createAccount.setEnabled(true);
-        createAccount.setTextColor(getResources().getColor(R.color.black));
-    }
-
-    private void disableCreateButton() {
-        createAccount.setEnabled(false);
-        createAccount.setTextColor(getResources().getColor(R.color.disabled_text));
-    }
-
-    private void setCreateButtonsTapAbility() {
-        if(doAllInputHaveText() && !createAccount.isEnabled())
-            enableCreateButton();
-        else if (anyInputHaveNoText() && createAccount.isEnabled())
-            disableCreateButton();
-    }
 
 
     /**
@@ -198,6 +219,51 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
 
+    private Drawable retrieveDrawable(int dResId) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+            return getDrawable(dResId);
+        else
+            return getResources().getDrawable(dResId, getTheme());
+    }
+
+
+
+    /**
+     * ELEMENTS BEHAVIOR
+     */
+
+    private void enableCreateButton() {
+        createAccount.setEnabled(true);
+        createAccount.setTextColor(getResources().getColor(R.color.black));
+    }
+
+    private void disableCreateButton() {
+        createAccount.setEnabled(false);
+        createAccount.setTextColor(getResources().getColor(R.color.disabled_text));
+    }
+
+    private void setCreateButtonsTapAbility() {
+        if(doAllInputHaveText() && !createAccount.isEnabled())
+            enableCreateButton();
+        else if (anyInputHaveNoText() && createAccount.isEnabled())
+            disableCreateButton();
+    }
+
+    private void setEnablingElements(boolean canBeUsed) {
+        if (canBeUsed) {
+            createAccount.setText(R.string.prompt_create_account);
+            enableCreateButton();
+        } else {
+            createAccount.setText(R.string.logging_in);
+            disableCreateButton();
+        }
+        nameInput.setEnabled(canBeUsed);
+        usernameInput.setEnabled(canBeUsed);
+        emailInput.setEnabled(canBeUsed);
+        passwordInput.setEnabled(canBeUsed);
+        confirmPasswordInput.setEnabled(canBeUsed);
+    }
+
 
     /**
      * LISTENERS
@@ -216,6 +282,7 @@ public class RegistrationActivity extends AppCompatActivity {
             @Override
             public void onFailure(String reason) {
                 Toast.makeText(RegistrationActivity.this, reason, Toast.LENGTH_LONG).show();
+                setEnablingElements(true);
             }
         };
     }

@@ -5,15 +5,18 @@
     <string name="prompt_sign_in">SIGN IN</string>
     <string name="hint_username">Username</string>
     <string name="hint_password">Password</string>
-    <string name="prompt_first_time">First time here?</string>
     <string name="login_failed">Invalid user or password.</string>
     <string name="authentication_has_crashed">Something went wrong. No user provided.</string>
     <string name="logging_in">Logging In…</string>
+    <string name="minimum_password_length">Password must be at least 8 characters.</string>
+    <string name="maximum_password_length">Password must contain a maximum of 8 characters.</string>
 
     <!-- Strings related to Sign up -->
+    <string name="prompt_first_time">First time here?</string>
     <string name="prompt_sign_up">SIGN UP</string>
     <string name="hint_name">Name</string>
     <string name="unavailable_username">Unavailable username. Try other one.</string>
+    <string name="usernames_characters_restriction">Some characters aren\'t allowed in usernames.</string>
     <string name="invalid_username_characters_message">Username has invalid characters.  Please, use only letters, digits,  _(underline),  -(hyphen) and .(dot).</string>
     <string name="hint_email">email</string>
     <string name="invalid_email_format">Invalid email format.</string>

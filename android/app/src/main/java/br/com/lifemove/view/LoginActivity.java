@@ -2,7 +2,6 @@ package br.com.lifemove.view;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.drawable.DrawableCompat;
 
 import br.com.lifemove.R;
 import br.com.lifemove.interfaces.optimization.optTextWatcher;
@@ -27,6 +27,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextView forgotPasswordView;
 
     private Button signIn;
+    private Button signUp;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,26 +41,31 @@ public class LoginActivity extends AppCompatActivity {
             finish();
         }
 
-        ImageView logoHolder = findViewById(R.id.login_logo_holder);
-        logoHolder.setImageResource(R.drawable.light_logo);
+        setViewElements();
 
-        usernameInput = findViewById(R.id.login_username_field);
-        passwordInput = findViewById(R.id.login_password_field);
-
-        forgotPasswordView = findViewById(R.id.forgot_password_view);
-        signIn = findViewById(R.id.sign_in);
-        Button signUp = findViewById(R.id.login_sign_up);
-
-
-        TextWatcher watcher = new optTextWatcher() {
+        usernameInput.addTextChangedListener(new optTextWatcher() {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 setLoginButtonTapAbility();
+                DrawableCompat.setTint(usernameInput.getBackground(), getResources().getColor(R.color.highlight));
             }
-        };
+        });
 
-        usernameInput.addTextChangedListener(watcher);
-        passwordInput.addTextChangedListener(watcher);
+        passwordInput.addTextChangedListener(new optTextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                setLoginButtonTapAbility();
+
+                if (charSequence.length() >= 32) {
+                    Toast.makeText(LoginActivity.this, R.string.maximum_password_length, Toast.LENGTH_SHORT).show();
+                    DrawableCompat.setTint(passwordInput.getBackground(), getResources().getColor(R.color.red));
+                } else
+                    DrawableCompat.setTint(passwordInput.getBackground(), getResources().getColor(R.color.highlight));
+
+
+
+            }
+        });
 
 
         forgotPasswordView.setOnClickListener(new View.OnClickListener() {
@@ -69,22 +75,33 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setElementsUsability(false);
+                setEnablingElements(false);
 
                 String username = usernameInput.getText().toString();
                 String password = passwordInput.getText().toString();
 
-                if(username.isEmpty() || password.isEmpty())
+                if(username.isEmpty()) {
+                    DrawableCompat.setTint(usernameInput.getBackground(), getResources().getColor(R.color.red));
                     Toast.makeText(LoginActivity.this, R.string.all_fields_must_be_filled, Toast.LENGTH_SHORT).show();
-                else {
+                } else if (password.isEmpty()) {
+                    DrawableCompat.setTint(passwordInput.getBackground(), getResources().getColor(R.color.red));
+                    Toast.makeText(LoginActivity.this, R.string.all_fields_must_be_filled, Toast.LENGTH_SHORT).show();
+                } else if (password.length() < 8) {
+                    DrawableCompat.setTint(passwordInput.getBackground(), getResources().getColor(R.color.red));
+                    Toast.makeText(LoginActivity.this, R.string.minimum_password_length, Toast.LENGTH_SHORT).show();
+                } else {
                     AccessControlService loginService = new AccessControlService(getSimpleAsynchronousTaskListener());
                     loginService.authenticate(username, password);
                 }
+
+                setEnablingElements(true);
             }
         });
+
 
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,6 +109,19 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(new Intent(LoginActivity.this, RegistrationActivity.class));
             }
         });
+    }
+    private void setViewElements() {
+        ImageView logoHolder = findViewById(R.id.login_logo_holder);
+        logoHolder.setImageResource(R.drawable.light_logo);
+
+        usernameInput = findViewById(R.id.login_username_field);
+        passwordInput = findViewById(R.id.login_password_field);
+        forgotPasswordView = findViewById(R.id.forgot_password_view);
+        signIn = findViewById(R.id.sign_in);
+        signUp = findViewById(R.id.login_sign_up);
+
+        DrawableCompat.setTint(usernameInput.getBackground(), getResources().getColor(R.color.highlight));
+        DrawableCompat.setTint(passwordInput.getBackground(), getResources().getColor(R.color.highlight));
     }
 
     private void setLoginButtonTapAbility() {
@@ -105,7 +135,7 @@ public class LoginActivity extends AppCompatActivity {
             disableLoginButton();
     }
 
-    private void setElementsUsability(boolean canBeUsed) {
+    private void setEnablingElements(boolean canBeUsed) {
         if (canBeUsed) {
             signIn.setText(R.string.prompt_sign_in);
             enableLoginButton();
@@ -129,6 +159,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * LISTENERS AND WATCHERS
+     */
+
 
     private SimpleAsynchronousTaskListener getSimpleAsynchronousTaskListener() {
         return new SimpleAsynchronousTaskListener() {
@@ -142,8 +176,9 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onFailure(String reason) {
                 Toast.makeText(LoginActivity.this, reason, Toast.LENGTH_SHORT).show();
-                setElementsUsability(true);
+                setEnablingElements(true);
             }
         };
     }
+
 }
