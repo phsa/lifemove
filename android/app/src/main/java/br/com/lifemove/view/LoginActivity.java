@@ -2,7 +2,6 @@ package br.com.lifemove.view;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
@@ -15,17 +14,15 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import br.com.lifemove.R;
+import br.com.lifemove.interfaces.optimization.optTextWatcher;
 import br.com.lifemove.listener.SimpleAsynchronousTaskListener;
-import br.com.lifemove.service.AuthenticationService;
+import br.com.lifemove.service.AccessControlService;
 import br.com.lifemove.utils.SharedPreferencesUtils;
 
 public class LoginActivity extends AppCompatActivity {
 
     private EditText usernameInput;
-    private boolean usernameHasText = false;
-
     private EditText passwordInput;
-    private boolean passwordHasText = false;
 
     private TextView forgotPasswordView;
 
@@ -54,39 +51,15 @@ public class LoginActivity extends AppCompatActivity {
         Button signUp = findViewById(R.id.login_sign_up);
 
 
-        usernameInput.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
-
+        TextWatcher watcher = new optTextWatcher() {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                usernameHasText = charSequence.length() > 0;
-                if(usernameHasText && passwordHasText && !signIn.isEnabled())
-                    enableLoginButton();
-                else if ((!usernameHasText || !passwordHasText) && signIn.isEnabled())
-                    disableLoginButton();
+                setLoginButtonTapAbility();
             }
+        };
 
-            @Override
-            public void afterTextChanged(Editable editable) { }
-        });
-
-        passwordInput.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                passwordHasText = charSequence.length() > 0;
-                if(usernameHasText && passwordHasText && !signIn.isEnabled())
-                    enableLoginButton();
-                else if ((!usernameHasText || !passwordHasText) && signIn.isEnabled())
-                    disableLoginButton();
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) { }
-        });
+        usernameInput.addTextChangedListener(watcher);
+        passwordInput.addTextChangedListener(watcher);
 
 
         forgotPasswordView.setOnClickListener(new View.OnClickListener() {
@@ -107,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
                 if(username.isEmpty() || password.isEmpty())
                     Toast.makeText(LoginActivity.this, R.string.all_fields_must_be_filled, Toast.LENGTH_SHORT).show();
                 else {
-                    AuthenticationService loginService = new AuthenticationService(getSimpleAsynchronousTaskListener());
+                    AccessControlService loginService = new AccessControlService(getSimpleAsynchronousTaskListener());
                     loginService.authenticate(username, password);
                 }
             }
@@ -119,6 +92,17 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(new Intent(LoginActivity.this, RegistrationActivity.class));
             }
         });
+    }
+
+    private void setLoginButtonTapAbility() {
+        if (usernameInput.getText().toString().length() > 0
+                && passwordInput.getText().toString().length() > 0
+                && !signIn.isEnabled())
+            enableLoginButton();
+        else if ((usernameInput.getText().toString().length() == 0
+                    || passwordInput.getText().toString().length() == 0)
+                    && signIn.isEnabled())
+            disableLoginButton();
     }
 
     private void setElementsUsability(boolean canBeUsed) {

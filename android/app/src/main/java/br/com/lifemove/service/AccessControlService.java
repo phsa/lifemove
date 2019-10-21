@@ -10,13 +10,13 @@ import br.com.lifemove.model.User;
 import br.com.lifemove.utils.SharedPreferencesUtils;
 import br.com.lifemove.utils.StringUtils;
 
-public class AuthenticationService {
+public class AccessControlService {
 
     private static List<User> users = new ArrayList<>(Collections.singletonList(new User("Administrador", "admin", "admin@admin.com", "admin")));
 
     private SimpleAsynchronousTaskListener listener;
 
-    public AuthenticationService(SimpleAsynchronousTaskListener listener) {
+    public AccessControlService(SimpleAsynchronousTaskListener listener) {
         this.listener = listener;
     }
 
@@ -43,6 +43,13 @@ public class AuthenticationService {
             SharedPreferencesUtils.writeInSharedPreferences(SharedPreferencesUtils.PASSWORD_KEY, user.getPassword());
             listener.onSuccess();
         } else listener.onFailure(StringUtils.valueOf(R.string.authentication_has_crashed));
+    }
+
+    public boolean alreadyInUse(String username) {
+        for (User user: users)
+            if (user.getUsername().compareTo(username) == 0)
+                return true;
+        return false;
     }
 
 }
