@@ -6,13 +6,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary"
+    android:background="@color/dark_primary"
     android:orientation="vertical"
     tools:context=".view.LoginActivity">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/login_components"
+        android:id="@+id/registration_components"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/background_gradient"
@@ -23,29 +23,30 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/logo_holder"
+            android:id="@+id/login_logo_holder"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintWidth_percent="0.6"
-            app:layout_constraintHeight_percent="0.2"
             android:layout_marginTop="96dp"
             android:contentDescription="@string/app_name"
+            app:layout_constraintWidth_percent="0.6"
+            app:layout_constraintHeight_percent="0.2"
             app:layout_constraintBottom_toTopOf="@+id/login_username_field"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/lifemove_logo_vector" />
+            tools:src="@drawable/light_logo" />
 
         <EditText
             android:id="@+id/login_username_field"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:hint="@string/hint_username"
-            android:inputType="textShortMessage"
-            android:textColorHint="@color/dark_green"
+            android:textColorHint="@color/hint"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/input_field"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/logo_holder" />
+            app:layout_constraintTop_toBottomOf="@+id/login_logo_holder" />
 
 
         <EditText
@@ -54,9 +55,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:hint="@string/hint_password"
+            android:textColorHint="@color/hint"
             android:inputType="textPassword"
-            android:textColorHint="@color/dark_green"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:textColor="@color/input_field"
+            android:maxLength="32"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/login_username_field"
@@ -71,6 +73,7 @@
             android:clickable="true"
             android:focusable="true"
             android:textColor="@color/white"
+            android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@+id/login_password_field"
             app:layout_constraintEnd_toEndOf="@+id/login_password_field"
             app:layout_constraintStart_toStartOf="@+id/login_password_field"
@@ -79,48 +82,53 @@
 
         <Button
             android:id="@+id/sign_in"
-            android:layout_width="150dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="72dp"
-            android:layout_marginBottom="68dp"
-            android:background="@drawable/soft_highlight_rounded_button"
-            android:fontFamily="sans-serif-black"
+            android:minWidth="@dimen/button_width"
+            android:paddingEnd="@dimen/button_side_padding"
+            android:paddingStart="@dimen/button_side_padding"
+            android:layout_marginTop="@dimen/action_button_top_margin"
+            android:enabled="false"
+            android:background="@drawable/light_rounded_button"
             android:text="@string/prompt_sign_in"
-            android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textColor="@color/disabled_text"
+            android:textSize="@dimen/button_text_size"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/login_password_field" />
 
         <TextView
-            android:id="@+id/first_time"
+            android:id="@+id/first_time_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:text="@string/prompt_first_time"
             android:textSize="14sp"
             android:textColor="@color/white"
+            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/login_sign_up"
             app:layout_constraintEnd_toEndOf="@+id/login_sign_up"
             app:layout_constraintStart_toStartOf="@+id/login_sign_up" />
 
         <Button
             android:id="@+id/login_sign_up"
-            android:layout_width="150dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="69dp"
-            android:layout_marginBottom="32dp"
+            android:minWidth="@dimen/button_width"
+            android:paddingEnd="@dimen/button_side_padding"
+            android:paddingStart="@dimen/button_side_padding"
+            android:layout_marginTop="@dimen/action_button_top_margin"
+            android:layout_marginBottom="@dimen/action_button_bottom_margin"
             android:background="@drawable/primary_rounded_button"
-            android:fontFamily="sans-serif-black"
             android:text="@string/prompt_sign_up"
             android:textColor="@color/white"
-            android:textSize="18sp"
+            android:textSize="@dimen/button_text_size"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sign_in" />
+            app:layout_constraintTop_toBottomOf="@+id/sign_in"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

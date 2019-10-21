@@ -5,24 +5,21 @@
     <application
         android:name=".utils.LifeMoveApplicationUtils"
         android:allowBackup="true"
-        android:icon="@mipmap/lifemove_logo"
+        android:icon="@mipmap/lifemove_badge"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/lifemove_logo_round"
+        android:roundIcon="@mipmap/lifemove_badge_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".view.HomeActivity"/>
         <activity
             android:name=".view.ResetPasswordActivity"
-            android:theme="@style/AppCompatFullScreen" />
-        <activity android:name=".view.ProfileActivity" />
+            android:windowSoftInputMode="adjustResize"/>
         <activity
-            android:name=".view.RegisterActivity"
-            android:configChanges="orientation|screenSize"
-            android:theme="@style/AppCompatFullScreen" />
+            android:name=".view.RegistrationActivity"
+            android:configChanges="orientation|screenSize"/>
         <activity
             android:name=".view.LoginActivity"
-            android:configChanges="orientation|screenSize"
-            android:theme="@style/AppCompatFullScreen">
+            android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

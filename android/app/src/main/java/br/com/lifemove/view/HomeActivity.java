@@ -1,9 +1,9 @@
 package br.com.lifemove.view;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -27,7 +27,7 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.profile_action) {
-            startActivity(new Intent(HomeActivity.this, ProfileActivity.class));
+            Toast.makeText(this, "Área em manuntenção", Toast.LENGTH_SHORT).show();
             return super.onOptionsItemSelected(item);
         }
         return super.onOptionsItemSelected(item);

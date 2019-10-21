@@ -1,25 +1,40 @@
 <resources>
     <string name="app_name">LifeMove</string>
 
-    <!-- Common strings -->
-    <string name="all_fields_must_be_filled">Preencha todos os campos.</string>
-
     <!-- Strings related to Login -->
     <string name="prompt_sign_in">SIGN IN</string>
     <string name="hint_username">Username</string>
     <string name="hint_password">Password</string>
-    <string name="prompt_reset_password"><u>Reset password.</u></string>
-    <string name="prompt_first_time">First time here?</string>
+    <string name="login_failed">Invalid user or password.</string>
+    <string name="authentication_has_crashed">Something went wrong. No user provided.</string>
+    <string name="logging_in">Logging In…</string>
+    <string name="minimum_password_length">Password must be at least 8 characters.</string>
+    <string name="maximum_password_length">Password must contain a maximum of 8 characters.</string>
 
     <!-- Strings related to Sign up -->
+    <string name="prompt_first_time">First time here?</string>
     <string name="prompt_sign_up">SIGN UP</string>
     <string name="hint_name">Name</string>
+    <string name="unavailable_username">Unavailable username. Try other one.</string>
+    <string name="usernames_characters_restriction">Some characters aren\'t allowed in usernames.</string>
+    <string name="invalid_username_characters_message">Username has invalid characters.  Please, use only letters, digits,  _(underline),  -(hyphen) and .(dot).</string>
     <string name="hint_email">email</string>
+    <string name="invalid_email_format">Invalid email format.</string>
     <string name="hint_confirm_password">Confirm password</string>
+    <string name="invalid_password_confirmation">The confirmation doesn\'t match your password.</string>
     <string name="prompt_create_account">CREATE ACCOUNT</string>
+    <string name="all_fields_must_be_filled">Fulfill all input fields.</string>
+    <string name="successfully_registration">Successfully registration.</string>
     <string name="prompt_already_user">Already a user?</string>
-    <string name="prompt_profile">Profile</string>
+
+    <!-- Strings related to Reset Password -->
+    <string name="prompt_reset_password"><u>Reset password.</u></string>
+    <string name="prompt_forgot_password">Forgot your password?</string>
     <string name="provide_email_hint">Type your email…</string>
-    <string name="prompt_reset">RESET</string>
-    <string name="reset_password_message"><c>Forgot your password?\nWe\'ll send a new one to you.</c></string>
+    <string name="recovery_explanation">We will send to your email a recovery link.</string>
+    <string name="prompt_send_link">SEND A LINK</string>
+    <string name="email_was_sent">We have sent a email to you.</string>
+
+    <!-- String related to Profile -->
+    <string name="prompt_profile">Profile</string>
 </resources>
