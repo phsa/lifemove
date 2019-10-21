@@ -12,7 +12,7 @@ import br.com.lifemove.utils.StringUtils;
 
 public class AccessControlService {
 
-    private static List<User> users = new ArrayList<>(Collections.singletonList(new User("Administrador", "admin", "admin@admin.com", "admin")));
+    private static List<User> users = new ArrayList<>(Collections.singletonList(new User("Administrador", "admin", "admin@admin.com", "admin@admin")));
 
     private SimpleAsynchronousTaskListener listener;
 
