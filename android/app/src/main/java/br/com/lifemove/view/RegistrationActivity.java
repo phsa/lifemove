@@ -55,18 +55,6 @@ public class RegistrationActivity extends AppCompatActivity {
 
         setViewElements();
 
-        TextWatcher watcher = new optTextWatcher() {
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                setCreateButtonsTapAbility();
-                DrawableCompat.setTint(emailInput.getBackground(), getResources().getColor(R.color.highlight));
-            }
-        };
-
-        nameInput.addTextChangedListener(watcher);
-        emailInput.addTextChangedListener(watcher);
-        confirmPasswordInput.addTextChangedListener(watcher);
-
         configureInputFields();
 
         createAccount.setOnClickListener(new View.OnClickListener() {
@@ -103,6 +91,8 @@ public class RegistrationActivity extends AppCompatActivity {
 
         registerService = new AccessControlService(getSimpleAsynchronousTaskListener());
     }
+
+
 
     private boolean emptyFieldsWereIdentified() {
         boolean thereAreEmptyFields = false;
@@ -157,6 +147,11 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     private void configureInputFields() {
+
+        nameInput.addTextChangedListener(getDefaultInputWatcher(nameInput));
+        emailInput.addTextChangedListener(getDefaultInputWatcher(emailInput));
+        confirmPasswordInput.addTextChangedListener(getDefaultInputWatcher(confirmPasswordInput));
+
         usernameInput.addTextChangedListener(new optTextWatcher() {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -222,6 +217,18 @@ public class RegistrationActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private TextWatcher getDefaultInputWatcher(final EditText input) {
+        return new optTextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                setCreateButtonsTapAbility();
+                if(input.getCurrentTextColor() != getResources().getColor(R.color.white))
+                    input.setTextColor(getResources().getColor(R.color.white));
+                DrawableCompat.setTint(input.getBackground(), getResources().getColor(R.color.highlight));
+            }
+        };
     }
 
 

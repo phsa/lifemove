@@ -110,6 +110,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
     private void setViewElements() {
         ImageView logoHolder = findViewById(R.id.login_logo_holder);
         logoHolder.setImageResource(R.drawable.light_logo);
