@@ -64,11 +64,11 @@ public class RegistrationActivity extends AppCompatActivity {
             public void onClick(View v) {
                 setEnablingElements(false);
 
-                String name = nameInput.getText().toString();
-                String username = usernameInput.getText().toString();
-                String email = emailInput.getText().toString();
-                String password = passwordInput.getText().toString();
-                String passwordConfirmation = confirmPasswordInput.getText().toString();
+                String name = nameInput.getText().toString().trim();
+                String username = usernameInput.getText().toString().trim();
+                String email = emailInput.getText().toString().trim();
+                String password = passwordInput.getText().toString().trim();
+                String passwordConfirmation = confirmPasswordInput.getText().toString().trim();
 
                 if (emptyFieldsWereIdentified()) {
                     Toast.makeText(RegistrationActivity.this, StringUtils.valueOf(R.string.all_fields_must_be_filled), Toast.LENGTH_LONG).show();
