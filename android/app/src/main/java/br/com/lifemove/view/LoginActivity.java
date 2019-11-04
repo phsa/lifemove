@@ -15,6 +15,7 @@ import androidx.core.graphics.drawable.DrawableCompat;
 
 import br.com.lifemove.R;
 import br.com.lifemove.interfaces.optimization.optTextWatcher;
+import br.com.lifemove.listener.AccessControlListener;
 import br.com.lifemove.listener.SimpleAsynchronousTaskListener;
 import br.com.lifemove.service.AccessControlService;
 import br.com.lifemove.utils.SharedPreferencesUtils;
@@ -94,7 +95,7 @@ public class LoginActivity extends AppCompatActivity {
                     DrawableCompat.setTint(passwordInput.getBackground(), getResources().getColor(R.color.red));
                     Toast.makeText(LoginActivity.this, R.string.minimum_password_length, Toast.LENGTH_SHORT).show();
                 } else {
-                    AccessControlService loginService = new AccessControlService(getSimpleAsynchronousTaskListener());
+                    AccessControlService loginService = new AccessControlService(getAccessControlListener());
                     loginService.authenticate(username, password);
                 }
 
@@ -110,6 +111,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
     private void setViewElements() {
         ImageView logoHolder = findViewById(R.id.login_logo_holder);
         logoHolder.setImageResource(R.drawable.light_logo);
@@ -164,8 +166,11 @@ public class LoginActivity extends AppCompatActivity {
      */
 
 
-    private SimpleAsynchronousTaskListener getSimpleAsynchronousTaskListener() {
-        return new SimpleAsynchronousTaskListener() {
+    private AccessControlListener getAccessControlListener() {
+        return new AccessControlListener() {
+
+            @Override
+            public void handleUsernameCheck(String checkedUsername, boolean allowed) {}
 
             @Override
             public void onSuccess() {

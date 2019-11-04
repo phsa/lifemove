@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.InputFilter;
 import android.text.Spanned;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,9 +20,10 @@ import androidx.core.graphics.drawable.DrawableCompat;
 
 import br.com.lifemove.R;
 import br.com.lifemove.interfaces.optimization.optTextWatcher;
-import br.com.lifemove.listener.SimpleAsynchronousTaskListener;
+import br.com.lifemove.listener.AccessControlListener;
 import br.com.lifemove.model.User;
 import br.com.lifemove.service.AccessControlService;
+import br.com.lifemove.utils.LifeMoveApplicationUtils;
 import br.com.lifemove.utils.StringUtils;
 
 //import com.google.firebase.database.DatabaseReference;
@@ -55,18 +57,6 @@ public class RegistrationActivity extends AppCompatActivity {
 
         setViewElements();
 
-        TextWatcher watcher = new optTextWatcher() {
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                setCreateButtonsTapAbility();
-                DrawableCompat.setTint(emailInput.getBackground(), getResources().getColor(R.color.highlight));
-            }
-        };
-
-        nameInput.addTextChangedListener(watcher);
-        emailInput.addTextChangedListener(watcher);
-        confirmPasswordInput.addTextChangedListener(watcher);
-
         configureInputFields();
 
         createAccount.setOnClickListener(new View.OnClickListener() {
@@ -83,14 +73,13 @@ public class RegistrationActivity extends AppCompatActivity {
                 if (emptyFieldsWereIdentified()) {
                     Toast.makeText(RegistrationActivity.this, StringUtils.valueOf(R.string.all_fields_must_be_filled), Toast.LENGTH_LONG).show();
                 } else if (username.matches(StringUtils.INVALID_USERNAME_PATTERN)) {
-                    DrawableCompat.setTint(usernameInput.getBackground(), getResources().getColor(R.color.red));
+                    LifeMoveApplicationUtils.setInputSomethingWrongAppearance(usernameInput);
                     Toast.makeText(RegistrationActivity.this, R.string.invalid_username_characters_message, Toast.LENGTH_LONG).show();
                 } else if (!StringUtils.checkEmail(email)) {
-                    DrawableCompat.setTint(emailInput.getBackground(), getResources().getColor(R.color.red));
+                    LifeMoveApplicationUtils.setInputSomethingWrongAppearance(emailInput);
                     Toast.makeText(RegistrationActivity.this, getString(R.string.invalid_email_format), Toast.LENGTH_SHORT).show();
                 } else if (password.compareTo(passwordConfirmation) != 0) {
-                    confirmPasswordInput.setTextColor(getResources().getColor(R.color.red));
-                    DrawableCompat.setTint(confirmPasswordInput.getBackground(), getResources().getColor(R.color.red));
+                    LifeMoveApplicationUtils.setInputSomethingWrongAppearance(confirmPasswordInput);
                     Toast.makeText(RegistrationActivity.this, getString(R.string.invalid_password_confirmation), Toast.LENGTH_SHORT).show();
                 } else {
                     createAccount.setEnabled(false);
@@ -103,6 +92,8 @@ public class RegistrationActivity extends AppCompatActivity {
 
         registerService = new AccessControlService(getSimpleAsynchronousTaskListener());
     }
+
+
 
     private boolean emptyFieldsWereIdentified() {
         boolean thereAreEmptyFields = false;
@@ -157,32 +148,21 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     private void configureInputFields() {
+
+        nameInput.addTextChangedListener(getDefaultInputWatcher(nameInput));
+        emailInput.addTextChangedListener(getDefaultInputWatcher(emailInput));
+        confirmPasswordInput.addTextChangedListener(getDefaultInputWatcher(confirmPasswordInput));
+
         usernameInput.addTextChangedListener(new optTextWatcher() {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                boolean usernameInputHasText = charSequence.length() > 0;
                 setCreateButtonsTapAbility();
 
-                boolean alreadyInUse = registerService.alreadyInUse(charSequence.toString());
 
-                Drawable inputBackground = usernameInput.getBackground();
+                usernameAvailability.setVisibility(View.INVISIBLE);
+                LifeMoveApplicationUtils.setInputAlrightAppearance(usernameInput);
 
-                if (usernameInputHasText) {
-                    if (alreadyInUse) {
-                        usernameAvailability.setImageDrawable(retrieveDrawable(R.drawable.remove_icon));
-                        usernameAvailability.setVisibility(View.VISIBLE);
-                        usernameInput.setTextColor(getResources().getColor(R.color.red));
-                        DrawableCompat.setTint(inputBackground, getResources().getColor(R.color.red));
-                    } else {
-                        usernameAvailability.setImageDrawable(retrieveDrawable(R.drawable.checked_icon));
-                        usernameAvailability.setVisibility(View.VISIBLE);
-                        usernameInput.setTextColor(getResources().getColor(R.color.soft_green));
-                        DrawableCompat.setTint(inputBackground, getResources().getColor(R.color.soft_green));
-                    }
-                } else {
-                    usernameAvailability.setVisibility(View.INVISIBLE);
-                    DrawableCompat.setTint(inputBackground, getResources().getColor(R.color.highlight));
-                }
+                registerService.checkForUsername(charSequence.toString());
             }
         });
 
@@ -210,18 +190,30 @@ public class RegistrationActivity extends AppCompatActivity {
 
                 if(charSequence.length() > 0 && charSequence.length() < 8) {
                     passwordWarning.setVisibility(View.VISIBLE);
-                    passwordInput.setTextColor(getResources().getColor(R.color.red));
-                    DrawableCompat.setTint(passwordInput.getBackground(), getResources().getColor(R.color.red));
+                    LifeMoveApplicationUtils.setInputSomethingWrongAppearance(passwordInput);
                 } else if (charSequence.length() >= 32) {
                     Toast.makeText(RegistrationActivity.this, R.string.maximum_password_length, Toast.LENGTH_SHORT).show();
-                    DrawableCompat.setTint(passwordInput.getBackground(), getResources().getColor(R.color.red));
+                    LifeMoveApplicationUtils.setInputSomethingWrongAppearance(passwordInput);
                 } else {
                     passwordWarning.setVisibility(View.INVISIBLE);
-                    passwordInput.setTextColor(getResources().getColor(R.color.white));
-                    DrawableCompat.setTint(passwordInput.getBackground(), getResources().getColor(R.color.highlight));
+                    LifeMoveApplicationUtils.setInputAlrightAppearance(passwordInput);
                 }
             }
         });
+    }
+
+
+
+    private TextWatcher getDefaultInputWatcher(final EditText input) {
+        return new optTextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                setCreateButtonsTapAbility();
+                if(input.getCurrentTextColor() != getResources().getColor(R.color.white))
+                    input.setTextColor(getResources().getColor(R.color.white));
+                DrawableCompat.setTint(input.getBackground(), getResources().getColor(R.color.highlight));
+            }
+        };
     }
 
 
@@ -297,8 +289,27 @@ public class RegistrationActivity extends AppCompatActivity {
      * LISTENERS
      */
 
-    private SimpleAsynchronousTaskListener getSimpleAsynchronousTaskListener() {
-        return new SimpleAsynchronousTaskListener() {
+    private AccessControlListener getSimpleAsynchronousTaskListener() {
+        return new AccessControlListener() {
+
+            @Override
+            public void handleUsernameCheck(String checkedUsername, boolean available) {
+                if (usernameInput.getText().length() > 0
+                        && usernameInput.getText().toString().compareTo(checkedUsername) == 0) {
+                    if (available) {
+                        usernameAvailability.setImageDrawable(retrieveDrawable(R.drawable.checked_icon));
+                        usernameAvailability.setVisibility(View.VISIBLE);
+                        LifeMoveApplicationUtils.setInputAppearance(usernameInput, R.color.soft_green, R.color.soft_green);
+                    } else {
+                        usernameAvailability.setImageDrawable(retrieveDrawable(R.drawable.remove_icon));
+                        usernameAvailability.setVisibility(View.VISIBLE);
+                        LifeMoveApplicationUtils.setInputSomethingWrongAppearance(usernameInput);
+                    }
+                } else {
+                    usernameAvailability.setVisibility(View.INVISIBLE);
+                    LifeMoveApplicationUtils.setInputAlrightAppearance(usernameInput);
+                }
+            }
 
             @Override
             public void onSuccess() {
