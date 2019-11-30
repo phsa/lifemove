@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -16,7 +15,6 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import br.com.lifemove.R;
 import br.com.lifemove.interfaces.optimization.optTextWatcher;
 import br.com.lifemove.listener.AccessControlListener;
-import br.com.lifemove.listener.SimpleAsynchronousTaskListener;
 import br.com.lifemove.service.AccessControlService;
 import br.com.lifemove.utils.SharedPreferencesUtils;
 
@@ -25,10 +23,8 @@ public class LoginActivity extends AppCompatActivity {
     private EditText usernameInput;
     private EditText passwordInput;
 
-    private TextView forgotPasswordView;
-
     private Button signIn;
-    private Button signUp;
+    private Button forgotPasswordButton;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -69,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
-        forgotPasswordView.setOnClickListener(new View.OnClickListener() {
+        forgotPasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(LoginActivity.this, ResetPasswordActivity.class));
@@ -102,14 +98,6 @@ public class LoginActivity extends AppCompatActivity {
                 setEnablingElements(true);
             }
         });
-
-
-        signUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(LoginActivity.this, RegistrationActivity.class));
-            }
-        });
     }
 
     private void setViewElements() {
@@ -118,9 +106,8 @@ public class LoginActivity extends AppCompatActivity {
 
         usernameInput = findViewById(R.id.login_username_field);
         passwordInput = findViewById(R.id.login_password_field);
-        forgotPasswordView = findViewById(R.id.forgot_password_view);
+        forgotPasswordButton = findViewById(R.id.forgot_password_button);
         signIn = findViewById(R.id.sign_in);
-        signUp = findViewById(R.id.login_sign_up);
 
         DrawableCompat.setTint(usernameInput.getBackground(), getResources().getColor(R.color.highlight));
         DrawableCompat.setTint(passwordInput.getBackground(), getResources().getColor(R.color.highlight));
@@ -147,7 +134,7 @@ public class LoginActivity extends AppCompatActivity {
         }
         usernameInput.setEnabled(canBeUsed);
         passwordInput.setEnabled(canBeUsed);
-        forgotPasswordView.setEnabled(canBeUsed);
+        forgotPasswordButton.setEnabled(canBeUsed);
     }
 
     private void enableLoginButton() {
@@ -174,7 +161,9 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onSuccess() {
-                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                Intent homeIntent = new Intent(LoginActivity.this, HomeActivity.class);
+                homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(homeIntent);
                 finish();
             }
 

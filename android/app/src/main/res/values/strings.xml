@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">LifeMove</string>
 
+    <!-- Strings related to Presentation Screen -->
+    <string name="app_marketing_phrase">Find the best sporting events near you.</string>
+
     <!-- Strings related to Login -->
     <string name="prompt_sign_in">SIGN IN</string>
     <string name="hint_username">Username</string>
@@ -28,7 +31,7 @@
     <string name="prompt_already_user">Already a user?</string>
 
     <!-- Strings related to Reset Password -->
-    <string name="prompt_reset_password"><u>Reset password.</u></string>
+    <string name="prompt_reset_password"><u>Reset password</u></string>
     <string name="prompt_forgot_password">Forgot your password?</string>
     <string name="provide_email_hint">Type your email…</string>
     <string name="recovery_explanation">We will send to your email a recovery link.</string>

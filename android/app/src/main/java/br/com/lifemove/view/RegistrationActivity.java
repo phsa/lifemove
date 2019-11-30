@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.text.InputFilter;
 import android.text.Spanned;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -313,7 +312,9 @@ public class RegistrationActivity extends AppCompatActivity {
 
             @Override
             public void onSuccess() {
-                startActivity(new Intent(RegistrationActivity.this, HomeActivity.class));
+                Intent homeIntent = new Intent(RegistrationActivity.this, HomeActivity.class);
+                homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(homeIntent);
                 Toast.makeText(RegistrationActivity.this, getString(R.string.successfully_registration), Toast.LENGTH_LONG).show();
                 finish();
             }
