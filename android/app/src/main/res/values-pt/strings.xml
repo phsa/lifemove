@@ -3,6 +3,9 @@
 
     <string name="app_name">LifeMove</string>
 
+    <!-- Strings relacionadas a Tela de Apresentação -->
+    <string name="app_marketing_phrase">Encontre os melhores eventos esportivos perto de você.</string>
+
     <!-- Strings relacionadas ao Login -->
     <string name="hint_username">Nome de usuário</string>
     <string name="hint_password">Senha</string>
@@ -31,7 +34,7 @@
     <string name="successfully_registration">Cadastro efetuado com sucesso.</string>
 
     <!-- Strings relacionadas a Redefinição de Senha -->
-    <string name="prompt_reset_password"><u>Redefinir senha.</u></string>
+    <string name="prompt_reset_password"><u>Redefinir senha</u></string>
     <string name="prompt_forgot_password">Esqueceu a sua senha?</string>
     <string name="provide_email_hint">Digite seu email…</string>
     <string name="recovery_explanation">Enviaremos um email com um link de recuperação.</string>

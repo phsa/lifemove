@@ -64,22 +64,6 @@
             app:layout_constraintTop_toBottomOf="@+id/login_username_field"
             app:layout_constraintVertical_bias="0.0" />
 
-        <TextView
-            android:id="@+id/forgot_password_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/prompt_reset_password"
-            android:textSize="14sp"
-            android:clickable="true"
-            android:focusable="true"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@+id/login_password_field"
-            app:layout_constraintEnd_toEndOf="@+id/login_password_field"
-            app:layout_constraintStart_toStartOf="@+id/login_password_field"
-            app:layout_constraintHorizontal_bias="0.05" />
-
-
         <Button
             android:id="@+id/sign_in"
             android:layout_width="wrap_content"
@@ -98,37 +82,25 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/login_password_field" />
 
-        <TextView
-            android:id="@+id/first_time_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="@string/prompt_first_time"
-            android:textSize="14sp"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/login_sign_up"
-            app:layout_constraintEnd_toEndOf="@+id/login_sign_up"
-            app:layout_constraintStart_toStartOf="@+id/login_sign_up" />
-
         <Button
-            android:id="@+id/login_sign_up"
+            android:id="@+id/forgot_password_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="16dp"
             android:minWidth="@dimen/button_width"
             android:paddingEnd="@dimen/button_side_padding"
             android:paddingStart="@dimen/button_side_padding"
-            android:layout_marginTop="@dimen/action_button_top_margin"
-            android:layout_marginBottom="@dimen/action_button_bottom_margin"
-            android:background="@drawable/primary_rounded_button"
-            android:text="@string/prompt_sign_up"
+            android:text="@string/prompt_reset_password"
+            android:textSize="12sp"
             android:textColor="@color/white"
-            android:textSize="@dimen/button_text_size"
+            android:background="@drawable/transparent_button"
             android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/sign_in"
+            app:layout_constraintEnd_toEndOf="@+id/sign_in"
+            app:layout_constraintStart_toStartOf="@+id/sign_in"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sign_in"/>
+            />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
