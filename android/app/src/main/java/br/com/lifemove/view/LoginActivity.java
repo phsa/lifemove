@@ -161,7 +161,9 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onSuccess() {
-                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                Intent homeIntent = new Intent(LoginActivity.this, HomeActivity.class);
+                homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(homeIntent);
                 finish();
             }
 

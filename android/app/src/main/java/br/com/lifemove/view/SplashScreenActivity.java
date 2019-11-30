@@ -35,7 +35,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                 if(user != null && !user.isEmpty())
                     startActivity(new Intent(getApplicationContext(), HomeActivity.class));
                 else
-                    startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                    startActivity(new Intent(getApplicationContext(), PresentationActivity.class));
                 finish();
             }
         }, TIME_SPLASH_SCREEN);

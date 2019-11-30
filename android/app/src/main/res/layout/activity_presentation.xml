@@ -8,6 +8,7 @@
     tools:context=".view.PresentationActivity">
 
     <ImageView
+        android:id="@+id/presentation_logo_holder"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:contentDescription="@string/app_name"
@@ -25,13 +26,12 @@
     <TextView
         android:id="@+id/marketing_phrase"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:text="@string/app_marketing_phrase"
         android:textColor="@color/white"
         android:textStyle="bold"
-        android:textSize="48sp"
+        android:textSize="38sp"
         app:layout_constraintWidth_percent="0.8"
-        app:layout_constraintHeight_percent="0.33"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -40,7 +40,7 @@
         />
 
     <Button
-        android:id="@+id/sign_in"
+        android:id="@+id/presentation_sign_in"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:minWidth="@dimen/button_width"
@@ -66,14 +66,15 @@
         android:textSize="14sp"
         android:textColor="@color/white"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/login_sign_up"
-        app:layout_constraintEnd_toEndOf="@+id/login_sign_up"
-        app:layout_constraintStart_toStartOf="@+id/login_sign_up" />
+        app:layout_constraintBottom_toTopOf="@+id/presentation_sign_up"
+        app:layout_constraintEnd_toEndOf="@+id/presentation_sign_up"
+        app:layout_constraintStart_toStartOf="@+id/presentation_sign_up" />
 
     <Button
-        android:id="@+id/login_sign_up"
+        android:id="@+id/presentation_sign_up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:minWidth="@dimen/button_width"
         android:paddingEnd="@dimen/button_side_padding"
         android:paddingStart="@dimen/button_side_padding"
@@ -85,7 +86,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sign_in"
+        app:layout_constraintTop_toBottomOf="@+id/presentation_sign_in"
         app:layout_constraintVertical_bias="0.33"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
