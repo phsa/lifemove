@@ -39,5 +39,18 @@
     <string name="email_was_sent">We have sent a email to you.</string>
 
     <!-- String related to Profile -->
-    <string name="prompt_profile">Profile</string>
+    <string name="profile_prompt">Profile</string>
+    <string name="events_prompt">Events</string>
+    <string name="followers_prompt">Followers</string>
+    <string name="following_prompt">Following</string>
+    <string name="zero_prompt">0</string>
+    <string name="edit_profile">EDIT PROFILE</string>
+    <string name="user_full_name_prompt">User Full Name</string>
+    <string name="user_not_found">User not found.</string>
+    <string name="event_title_placeholder">Event Title</string>
+    <string name="event_location_placeholder">Event Location</string>
+    <string name="event_start_time_placeholder">Start Time</string>
+    <string name="event_end_time_placeholder">End Time</string>
+    <string name="event_join">JOIN</string>
+    <string name="event_not_interested">NOT INTERESTED</string>
 </resources>

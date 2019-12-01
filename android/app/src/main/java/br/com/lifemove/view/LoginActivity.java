@@ -16,6 +16,7 @@ import br.com.lifemove.R;
 import br.com.lifemove.interfaces.optimization.optTextWatcher;
 import br.com.lifemove.listener.AccessControlListener;
 import br.com.lifemove.service.AccessControlService;
+import br.com.lifemove.utils.SessionUtils;
 import br.com.lifemove.utils.SharedPreferencesUtils;
 
 public class LoginActivity extends AppCompatActivity {
@@ -32,8 +33,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.login_activity);
         if (getSupportActionBar() != null) getSupportActionBar().hide();
 
-        String user = SharedPreferencesUtils.readOfSharedPreferences(SharedPreferencesUtils.USER_KEY);
-        if (user != null && !user.isEmpty()) {
+        if (SessionUtils.anyLoggedUser()) {
             startActivity(new Intent(LoginActivity.this, HomeActivity.class));
             finish();
         }

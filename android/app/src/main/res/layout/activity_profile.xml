@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_gradient"
+    tools:context=".view.ProfileActivity">
+
+    <ImageView
+        android:id="@+id/user_avatar_holder"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/circle_shape"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/user_icon"
+        />
+
+    <TextView
+        android:id="@+id/user_name_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/user_full_name_prompt"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="@+id/events_title_view"
+        app:layout_constraintEnd_toEndOf="@+id/following_title_view"
+        app:layout_constraintTop_toTopOf="@id/user_avatar_holder"
+        app:layout_constraintBottom_toTopOf="@+id/followers_title_view"
+        app:layout_constraintVertical_bias="0.33"
+        />
+
+    <TextView
+        android:id="@+id/events_title_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/events_prompt"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:textColor="@color/highlight"
+        app:layout_constraintStart_toEndOf="@+id/user_avatar_holder"
+        app:layout_constraintEnd_toStartOf="@id/followers_title_view"
+        app:layout_constraintTop_toTopOf="@+id/user_avatar_holder"
+        app:layout_constraintBottom_toBottomOf="@+id/user_avatar_holder"
+        />
+
+    <TextView
+        android:id="@+id/events_count_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/zero_prompt"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:textColor="@color/highlight"
+        app:layout_constraintStart_toStartOf="@+id/events_title_view"
+        app:layout_constraintEnd_toEndOf="@+id/events_title_view"
+        app:layout_constraintTop_toBottomOf="@+id/events_title_view"
+        />
+
+    <TextView
+        android:id="@+id/followers_title_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/followers_prompt"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:textColor="@color/highlight"
+        app:layout_constraintStart_toEndOf="@+id/user_avatar_holder"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/user_avatar_holder"
+        app:layout_constraintBottom_toBottomOf="@+id/user_avatar_holder"
+        />
+
+    <TextView
+        android:id="@+id/followers_count_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/zero_prompt"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:textColor="@color/highlight"
+        app:layout_constraintStart_toStartOf="@+id/followers_title_view"
+        app:layout_constraintEnd_toEndOf="@+id/followers_title_view"
+        app:layout_constraintTop_toBottomOf="@+id/followers_title_view"
+        />
+
+    <TextView
+        android:id="@+id/following_title_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/following_prompt"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:textColor="@color/highlight"
+        app:layout_constraintStart_toEndOf="@+id/followers_title_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/user_avatar_holder"
+        app:layout_constraintBottom_toBottomOf="@+id/user_avatar_holder"
+        />
+
+    <TextView
+        android:id="@+id/following_count_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/zero_prompt"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:textColor="@color/highlight"
+        app:layout_constraintStart_toStartOf="@+id/following_title_view"
+        app:layout_constraintEnd_toEndOf="@+id/following_title_view"
+        app:layout_constraintTop_toBottomOf="@+id/following_title_view"
+        />
+
+    <Button
+        android:id="@+id/edit_profile_button"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        app:layout_constraintWidth_percent="0.90"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/primary_rounded_button"
+        android:paddingEnd="8dp"
+        android:paddingStart="8dp"
+        android:text="@string/edit_profile"
+        android:textSize="12sp"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/user_avatar_holder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/user_events"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent="0.9"
+        app:layout_constraintTop_toBottomOf="@id/edit_profile_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.1"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

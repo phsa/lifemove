@@ -42,6 +42,12 @@
     <string name="email_was_sent">Enviamos um email pra você.</string>
 
     <!-- String relacionadas ao Perfil -->
-    <string name="prompt_profile">Perfil</string>
+    <string name="profile_prompt">Perfil</string>
+    <string name="events_prompt">Eventos</string>
+    <string name="followers_prompt">Seguidores</string>
+    <string name="following_prompt">Seguindo</string>
+    <string name="zero_prompt">0</string>
+    <string name="edit_profile">EDITAR PERFIL</string>
+    <string name="user_full_name_prompt">Nome Completo do Usuário</string>
 
 </resources>

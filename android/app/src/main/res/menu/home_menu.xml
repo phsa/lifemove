@@ -6,6 +6,6 @@
         android:id="@+id/profile_action"
         android:icon="@drawable/user_icon"
         android:orderInCategory="100"
-        android:title="@string/prompt_profile"
+        android:title="@string/profile_prompt"
         app:showAsAction="ifRoom" />
 </menu>
