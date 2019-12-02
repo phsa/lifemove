@@ -1,31 +1,26 @@
 package br.com.lifemove.service;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 import br.com.lifemove.R;
 import br.com.lifemove.listener.AccessControlListener;
 import br.com.lifemove.model.User;
-import br.com.lifemove.utils.SharedPreferencesUtils;
+import br.com.lifemove.utils.SessionUtils;
 import br.com.lifemove.utils.StringUtils;
 
 public class AccessControlService {
 
-    private static List<User> users = new ArrayList<>(Collections.singletonList(new User("Administrador", "admin", "admin@admin.com", "admin@admin")));
-
     private AccessControlListener listener;
+    private UserService userService;
 
     public AccessControlService(AccessControlListener listener) {
         this.listener = listener;
+        this.userService = new UserService();
     }
 
     public void authenticate(String login, String password) {
-        for (User user : users) {
+        for (User user : userService.getAll()) {
             if ((user.getUsername().compareTo(login) == 0 || user.getEmail().compareTo(login) == 0)
                     && user.getPassword().compareTo(password) == 0) {
-                SharedPreferencesUtils.writeInSharedPreferences(SharedPreferencesUtils.USER_KEY, login);
-                SharedPreferencesUtils.writeInSharedPreferences(SharedPreferencesUtils.PASSWORD_KEY, password);
+                SessionUtils.saveSession(user.getUsername(), user.getPassword());
                 listener.onSuccess();
                 return;
             }
@@ -35,19 +30,18 @@ public class AccessControlService {
 
     public void register(User user) {
         if (user != null) {
-            for (User savedUser : users)
+            for (User savedUser : userService.getAll())
                 if (savedUser.getUsername().compareTo(user.getUsername()) == 0)
                     listener.onFailure(StringUtils.valueOf(R.string.unavailable_username));
-            users.add(user);
-            SharedPreferencesUtils.writeInSharedPreferences(SharedPreferencesUtils.USER_KEY, user.getUsername());
-            SharedPreferencesUtils.writeInSharedPreferences(SharedPreferencesUtils.PASSWORD_KEY, user.getPassword());
+            userService.add(user);
+            SessionUtils.saveSession(user.getUsername(), user.getPassword());
             listener.onSuccess();
         } else listener.onFailure(StringUtils.valueOf(R.string.authentication_has_crashed));
     }
 
     public void checkForUsername(String username) {
         boolean isAvailable = true;
-        for (User user: users)
+        for (User user: userService.getAll())
             if (user.getUsername().compareTo(username) == 0) {
                 listener.handleUsernameCheck(username, false);
                 isAvailable = false;

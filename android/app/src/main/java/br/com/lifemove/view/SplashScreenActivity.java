@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import br.com.lifemove.R;
-import br.com.lifemove.utils.SharedPreferencesUtils;
+import br.com.lifemove.utils.SessionUtils;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
@@ -31,8 +31,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         handle.postDelayed(new Runnable() {
             @Override
             public void run() {
-                String user = SharedPreferencesUtils.readOfSharedPreferences(SharedPreferencesUtils.USER_KEY);
-                if(user != null && !user.isEmpty())
+                if(SessionUtils.anyLoggedUser())
                     startActivity(new Intent(getApplicationContext(), HomeActivity.class));
                 else
                     startActivity(new Intent(getApplicationContext(), PresentationActivity.class));

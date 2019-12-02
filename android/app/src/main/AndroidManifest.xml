@@ -10,13 +10,14 @@
         android:roundIcon="@mipmap/lifemove_badge_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.PresentationActivity"></activity>
+        <activity android:name=".view.ProfileActivity"></activity>
+        <activity android:name=".view.PresentationActivity" />
         <activity android:name=".view.HomeActivity" />
         <activity
             android:name=".view.ResetPasswordActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity android:name=".view.RegistrationActivity" />
-        <activity android:name=".view.LoginActivity"></activity>
+        <activity android:name=".view.LoginActivity" />
         <activity
             android:name=".view.SplashScreenActivity"
             android:theme="@style/AppCompatFullScreen">
