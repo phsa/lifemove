@@ -24,6 +24,7 @@ public class UserService {
                             new ArrayList<User>(),
                             Arrays.asList(
                                     new SportsEvent(
+                                            "1",
                                             "3ª Pedalada do SESC",
                                             "Evento promovido pelo SESC Crateús",
                                             1575554400,
@@ -32,6 +33,7 @@ public class UserService {
                                             -40.6765753,
                                             SportCategory.CYCLING),
                                     new SportsEvent(
+                                            "2",
                                             "Corrida dos Servidores",
                                             "Evento promovido pela Prefeitura de Crateús",
                                             1575792000,
@@ -50,6 +52,7 @@ public class UserService {
                             ),
                             Collections.singletonList(
                                     new SportsEvent(
+                                            "3",
                                             "Handeball para iniciantes",
                                             "Evento aberto a todos os públicos",
                                             1575727200,
@@ -70,6 +73,7 @@ public class UserService {
                             Collections.singletonList(new User("Administrador", "admin", "admin@admin.com", "admin@admin")),
                             Arrays.asList(
                                     new SportsEvent(
+                                            "4",
                                             "Racha da UFC",
                                             "Evento promovido pelos servidores da UFC (Leve seus 10 reais)",
                                             1575410400,
@@ -78,6 +82,7 @@ public class UserService {
                                             -40.6765753,
                                             SportCategory.FOOTBALL),
                                     new SportsEvent(
+                                            "5",
                                             "Caminhada da UFC",
                                             "Evento promovido pela Prefeitura da Universidade Federal do Ceará",
                                             1575410400,
@@ -105,5 +110,9 @@ public class UserService {
     public List<User> getAll() {
         return users;
     }
+
+//    public SportsEvent getEventById(String id) {
+//
+//    }
 
 }

@@ -4,6 +4,7 @@ import br.com.lifemove.model.enums.SportCategory;
 
 public class SportsEvent {
 
+    private String id;
     private String title;
     private String description;
     private long startTime;
@@ -12,7 +13,8 @@ public class SportsEvent {
     private double locationLatitude;
     private SportCategory category;
 
-    public SportsEvent(String title, String description, long startTime, long endTime, double locationLongitude, double locationLatitude, SportCategory category) {
+    public SportsEvent(String id, String title, String description, long startTime, long endTime, double locationLongitude, double locationLatitude, SportCategory category) {
+        this.id = id;
         this.title = title;
         this.description = description;
         this.startTime = startTime;
@@ -20,6 +22,14 @@ public class SportsEvent {
         this.locationLongitude = locationLongitude;
         this.locationLatitude = locationLatitude;
         this.category = category;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -76,5 +86,18 @@ public class SportsEvent {
 
     public void setCategory(SportCategory category) {
         this.category = category;
+    }
+
+    @Override
+    public String toString() {
+        return "SportsEvent{" +
+                "title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
+                ", locationLongitude=" + locationLongitude +
+                ", locationLatitude=" + locationLatitude +
+                ", category=" + category +
+                '}';
     }
 }

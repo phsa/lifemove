@@ -43,7 +43,7 @@ public class ProfileActivity extends AppCompatActivity {
             setUserInfo();
 
             RecyclerView userEvents = findViewById(R.id.user_events);
-            EventsAdapter adapter = new EventsAdapter(user.getEvents());
+            EventsAdapter adapter = new EventsAdapter(user.getEvents(), false, false);
             LinearLayoutManager layoutManager = new LinearLayoutManager(this);
             userEvents.setAdapter(adapter);
             userEvents.setLayoutManager(layoutManager);

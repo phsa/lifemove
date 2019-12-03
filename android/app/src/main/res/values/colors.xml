@@ -5,6 +5,7 @@
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
     <color name="red">#FF0000</color>
+    <color name="soft_red">#FF6961</color>
     <color name="green">#00A489</color>
     <color name="soft_green">#00BFA5</color>
     <color name="blue">#03A9F4</color>
