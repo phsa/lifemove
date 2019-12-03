@@ -5,6 +5,10 @@ public class StringUtils {
     public static final String EMPTY = "";
     public static final String DEBUG_TAG = "DebuggingLifeMove";
 
+
+    public static final String SPORTS_EVENT_KEY = "event";
+
+
     public static final String INVALID_USERNAME_PATTERN = "[^a-zA-Z_.0-9\\-]";
 
 

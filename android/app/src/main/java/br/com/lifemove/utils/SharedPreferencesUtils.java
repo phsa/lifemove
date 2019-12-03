@@ -2,12 +2,9 @@ package br.com.lifemove.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 
 public class SharedPreferencesUtils {
 
-    public static final String USER_KEY = "user";
-    public static final String PASSWORD_KEY = "password";
     private static final String PREFERENCE = "preference";
 
     public static void writeInSharedPreferences(String key, String value) {
